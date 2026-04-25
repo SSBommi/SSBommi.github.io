@@ -114,7 +114,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 120px 48px 80px;
+    padding: 10px 48px 400px;
     position: relative;
     overflow: hidden;
   }

@@ -3,8 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sai Sanjay Bommisetty</title>
+
+<title>Sai Sanjay Bommisetty — Mechanical Engineer</title>
+<meta name="description" content="Mechanical engineering junior at UIUC building biometric sensing systems, precision robotics, and CubeSat structures. Open to Summer 2027 internships.">
+<link rel="canonical" href="https://ssbommi.github.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sai Sanjay Bommisetty">
+<meta property="og:title" content="Sai Sanjay Bommisetty — Mechanical Engineer">
+<meta property="og:description" content="Biometric sensing, pneumatic actuation, precision robotics, and CubeSat structural and thermal analysis.">
+<meta property="og:url" content="https://ssbommi.github.io/">
+<meta property="og:image" content="https://ssbommi.github.io/assets/img/microbots-gantry.jpg">
+<meta property="og:image:alt" content="Cartesian gantry with servo-driven robotic fingers positioned over a magnetic microbot test bed.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sai Sanjay Bommisetty — Mechanical Engineer">
+<meta name="twitter:description" content="Biometric sensing, pneumatic actuation, precision robotics, and CubeSat structural and thermal analysis.">
+<meta name="twitter:image" content="https://ssbommi.github.io/assets/img/microbots-gantry.jpg">
+
+<script>document.documentElement.className += ' js';</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
   :root {
     --bg: #0a0a0a;
@@ -14,6 +35,7 @@
     --accent2: #ff6b35;
     --text: #f0f0f0;
     --muted: #666;
+    --muted-strong: #8a8a8a;
     --card: #141414;
   }
 
@@ -28,13 +50,41 @@
     font-size: 14px;
     line-height: 1.6;
     overflow-x: hidden;
-    cursor: none;
   }
 
-  /* Custom cursor */
+  /* Custom cursor only on JS + precise-pointer devices, so touch and
+     keyboard users keep a real cursor. */
+  @media (pointer: fine) {
+    html.js body { cursor: none; }
+    html.js a, html.js button { cursor: none; }
+  }
+
+  img { display: block; max-width: 100%; }
+
+  /* Keyboard focus — the original had none at all */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 200;
+    background: var(--accent);
+    color: #0a0a0a;
+    padding: 12px 20px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .skip-link:focus { left: 0; }
+
   .cursor {
-    width: 10px;
-    height: 10px;
+    width: 10px; height: 10px;
     background: var(--accent);
     border-radius: 50%;
     position: fixed;
@@ -42,22 +92,22 @@
     z-index: 9999;
     transition: transform 0.15s ease;
     mix-blend-mode: difference;
+    display: none;
   }
 
   .cursor-ring {
-    width: 36px;
-    height: 36px;
+    width: 36px; height: 36px;
     border: 1px solid var(--accent);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9998;
-    transition: all 0.12s ease;
+    transition: transform 0.12s ease;
     mix-blend-mode: difference;
     opacity: 0.5;
+    display: none;
   }
 
-  /* Noise texture overlay */
   body::before {
     content: '';
     position: fixed;
@@ -89,16 +139,18 @@
     font-size: 16px;
     letter-spacing: -0.5px;
     color: var(--accent);
+    text-decoration: none;
   }
 
   .nav-links {
     display: flex;
     gap: 32px;
     list-style: none;
+    align-items: center;
   }
 
   .nav-links a {
-    color: var(--muted);
+    color: var(--muted-strong);
     text-decoration: none;
     font-size: 12px;
     letter-spacing: 0.1em;
@@ -107,6 +159,13 @@
   }
 
   .nav-links a:hover { color: var(--accent); }
+
+  .nav-resume {
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    color: var(--text) !important;
+  }
+  .nav-resume:hover { border-color: var(--accent); }
 
   /* Hero */
   .hero {
@@ -121,11 +180,13 @@
 
   .hero-bg {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: 
+    inset: 0;
+    background:
       radial-gradient(ellipse 60% 50% at 70% 30%, rgba(232,255,71,0.06) 0%, transparent 70%),
       radial-gradient(ellipse 40% 40% at 20% 70%, rgba(255,107,53,0.04) 0%, transparent 60%);
   }
+
+  .hero > *:not(.hero-bg) { position: relative; }
 
   .hero-tag {
     font-size: 11px;
@@ -133,8 +194,6 @@
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.2s forwards;
   }
 
   .hero-name {
@@ -144,8 +203,6 @@
     line-height: 0.9;
     letter-spacing: -4px;
     margin-bottom: 32px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.4s forwards;
   }
 
   .hero-name span {
@@ -154,20 +211,17 @@
   }
 
   .hero-desc {
-    max-width: 520px;
-    color: var(--muted);
+    max-width: 56ch;
+    color: var(--muted-strong);
     font-size: 13px;
     line-height: 1.8;
     margin-bottom: 40px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.6s forwards;
   }
 
   .hero-meta {
     display: flex;
+    flex-wrap: wrap;
     gap: 40px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.8s forwards;
   }
 
   .hero-meta-item {
@@ -188,6 +242,20 @@
     color: var(--text);
   }
 
+  html.js .hero-tag,
+  html.js .hero-name,
+  html.js .hero-desc,
+  html.js .hero-meta,
+  html.js .hero-scroll {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+  html.js .hero-tag    { animation-delay: 0.2s; }
+  html.js .hero-name   { animation-delay: 0.4s; }
+  html.js .hero-desc   { animation-delay: 0.6s; }
+  html.js .hero-meta   { animation-delay: 0.8s; }
+  html.js .hero-scroll { animation-delay: 1s; }
+
   .hero-scroll {
     position: absolute;
     bottom: 40px;
@@ -199,8 +267,6 @@
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 1s forwards;
   }
 
   .scroll-line {
@@ -246,11 +312,7 @@
   }
 
   /* Experience */
-  .exp-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  .exp-list { display: flex; flex-direction: column; }
 
   .exp-item {
     display: grid;
@@ -258,7 +320,6 @@
     gap: 48px;
     padding: 40px 0;
     border-bottom: 1px solid var(--border);
-    transition: background 0.3s;
     position: relative;
   }
 
@@ -266,16 +327,13 @@
     content: '';
     position: absolute;
     left: -48px;
-    top: 0;
-    bottom: 0;
+    top: 0; bottom: 0;
     width: 2px;
     background: transparent;
     transition: background 0.3s;
   }
 
-  .exp-item:hover::before {
-    background: var(--accent);
-  }
+  .exp-item:hover::before { background: var(--accent); }
 
   .exp-meta {
     display: flex;
@@ -286,7 +344,7 @@
 
   .exp-date {
     font-size: 11px;
-    color: var(--muted);
+    color: var(--muted-strong);
     letter-spacing: 0.05em;
   }
 
@@ -297,11 +355,9 @@
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--muted-strong);
     width: fit-content;
   }
-
-  .exp-content {}
 
   .exp-company {
     font-family: 'Syne', sans-serif;
@@ -326,7 +382,7 @@
   }
 
   .exp-bullets li {
-    color: var(--muted);
+    color: var(--muted-strong);
     font-size: 12px;
     line-height: 1.7;
     padding-left: 16px;
@@ -334,10 +390,13 @@
   }
 
   .exp-bullets li::before {
-    content: '—';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--accent);
+    top: 0.75em;
+    width: 8px;
+    height: 1px;
+    background: var(--accent);
     opacity: 0.6;
   }
 
@@ -350,11 +409,12 @@
 
   .project-card {
     background: var(--card);
-    padding: 40px;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s;
+    transition: border-color 0.3s, background 0.3s;
     border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
   }
 
   .project-card:hover {
@@ -362,31 +422,44 @@
     background: #161616;
   }
 
-  .project-card:hover .project-arrow {
-    transform: translate(4px, -4px);
-    color: var(--accent);
+  .project-figure {
+    margin: 0;
+    border-bottom: 1px solid var(--border);
+    background: #0d0d0d;
   }
 
-  .project-num {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 24px;
+  .project-figure img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    filter: saturate(0.85);
+    transition: filter 0.3s;
   }
+
+  .project-card:hover .project-figure img { filter: saturate(1); }
+
+  .project-body { padding: 32px 40px 40px; flex: 1; display: flex; flex-direction: column; }
 
   .project-title {
     font-family: 'Syne', sans-serif;
     font-weight: 700;
     font-size: 20px;
     letter-spacing: -0.5px;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
     line-height: 1.2;
   }
 
-  .project-desc {
+  .project-role {
+    font-size: 11px;
     color: var(--muted);
+    margin-bottom: 16px;
+    letter-spacing: 0.03em;
+  }
+
+  .project-desc {
+    color: var(--muted-strong);
     font-size: 12px;
-    line-height: 1.7;
+    line-height: 1.75;
     margin-bottom: 24px;
   }
 
@@ -394,7 +467,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .tag {
@@ -403,23 +476,35 @@
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--muted-strong);
   }
 
   .project-award {
     font-size: 11px;
     color: var(--accent);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
+    line-height: 1.7;
+    margin-top: auto;
   }
 
-  .project-arrow {
-    position: absolute;
-    top: 32px;
-    right: 32px;
-    font-size: 18px;
-    transition: all 0.3s;
-    color: var(--muted);
+  .project-gallery {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 24px;
   }
+
+  .project-gallery a { flex: 1; display: block; }
+
+  .project-gallery img {
+    width: 100%;
+    height: 72px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    filter: saturate(0.8);
+    transition: border-color 0.2s, filter 0.2s;
+  }
+
+  .project-gallery a:hover img { border-color: var(--accent); filter: saturate(1); }
 
   /* Skills */
   .skills-grid {
@@ -442,68 +527,47 @@
     margin-bottom: 20px;
   }
 
-  .skill-items {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  .skill-items { list-style: none; }
 
-  .skill-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .skill-items li {
     font-size: 12px;
     color: var(--text);
-    padding-bottom: 10px;
+    padding: 10px 0;
     border-bottom: 1px solid var(--border);
   }
 
-  .skill-item:last-child { border-bottom: none; padding-bottom: 0; }
-
-  .skill-bar {
-    width: 60px;
-    height: 2px;
-    background: var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .skill-fill {
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    background: var(--accent);
-  }
+  .skill-items li:last-child { border-bottom: none; padding-bottom: 0; }
 
   /* Stats */
   .stats-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2px;
-    margin-bottom: 2px;
   }
 
   .stat-block {
     background: var(--card);
     border: 1px solid var(--border);
-    padding: 40px 32px;
+    padding: 40px 24px;
     text-align: center;
   }
 
   .stat-num {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
-    font-size: 48px;
+    font-size: clamp(32px, 3.4vw, 48px);
     letter-spacing: -3px;
     color: var(--accent);
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .stat-label {
     font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
+    color: var(--muted-strong);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+    line-height: 1.5;
   }
 
   /* Contact */
@@ -526,10 +590,10 @@
   .contact-heading span { color: var(--accent); }
 
   .contact-sub {
-    color: var(--muted);
+    color: var(--muted-strong);
     font-size: 13px;
     line-height: 1.8;
-    max-width: 380px;
+    max-width: 42ch;
   }
 
   .contact-links {
@@ -548,7 +612,7 @@
     text-decoration: none;
     color: var(--text);
     font-size: 13px;
-    transition: all 0.2s;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
     background: var(--card);
   }
 
@@ -558,31 +622,23 @@
     color: var(--accent);
   }
 
-  .contact-link-arrow {
-    font-size: 16px;
-    transition: transform 0.2s;
-  }
+  .contact-link-arrow { font-size: 16px; transition: transform 0.2s; }
+  .contact-link:hover .contact-link-arrow { transform: translate(4px, -4px); }
 
-  .contact-link:hover .contact-link-arrow {
-    transform: translate(4px, -4px);
-  }
-
-  /* Footer */
   footer {
     padding: 32px 48px;
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--muted);
+    color: var(--muted-strong);
     font-size: 11px;
     letter-spacing: 0.05em;
   }
 
-  /* Animations */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   @keyframes pulse {
@@ -590,13 +646,15 @@
     50% { opacity: 1; }
   }
 
-  .reveal {
+  /* Reveal only hides content when JS is running, so the page is never
+     blank if the script fails or IntersectionObserver is unsupported. */
+  html.js .reveal {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
-  .reveal.visible {
+  html.js .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -621,7 +679,7 @@
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--muted-strong);
     flex-shrink: 0;
   }
 
@@ -629,18 +687,52 @@
 
   @keyframes ticker {
     from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* WCAG 2.2.2 — motion must be stoppable. Everything non-essential
+     freezes and all revealed content stays visible. */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .ticker { animation: none; transform: none; }
+    .ticker-wrap { overflow-x: auto; }
+    .scroll-line { animation: none; opacity: 0.6; }
+    html.js .hero-tag,
+    html.js .hero-name,
+    html.js .hero-desc,
+    html.js .hero-meta,
+    html.js .hero-scroll {
+      animation: none;
+      opacity: 1;
+    }
+    html.js .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    html.js body, html.js a, html.js button { cursor: auto; }
+    .cursor, .cursor-ring { display: none !important; }
+    * { transition-duration: 0.01ms !important; }
+  }
+
+  @media (max-width: 900px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .skills-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
+    nav { padding: 14px 24px; }
+    .nav-links { gap: 18px; }
+    .nav-links a { font-size: 11px; }
     .hero { padding: 0 24px 60px; }
     .hero-name { font-size: 48px; letter-spacing: -2px; }
+    .hero-meta { gap: 24px; }
+    .hero-scroll { right: 24px; }
     section { padding: 60px 24px; }
     .exp-item { grid-template-columns: 1fr; gap: 16px; }
+    .exp-item::before { left: -24px; }
     .projects-grid { grid-template-columns: 1fr; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .project-body { padding: 24px; }
     .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     footer { flex-direction: column; gap: 8px; text-align: center; }
   }
@@ -648,29 +740,34 @@
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
 <nav>
-  <div class="nav-logo">SSB</div>
+  <a class="nav-logo" href="#" aria-label="Sai Sanjay Bommisetty, home">SSB</a>
   <ul class="nav-links">
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a class="nav-resume" href="assets/Sai_Sanjay_Bommisetty_Resume.pdf">Résumé</a></li>
   </ul>
 </nav>
 
+<main id="main">
+
 <!-- Hero -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-tag">Mechanical Engineer / Hardware Builder</div>
+  <div class="hero-bg" aria-hidden="true"></div>
+  <p class="hero-tag">Mechanical Engineer / Hardware Builder</p>
   <h1 class="hero-name">
     Sai Sanjay
     <span>Bommisetty</span>
   </h1>
   <p class="hero-desc">
-    Sophomore ME at UIUC building real hardware from scratch — biometric sensing systems, pneumatic actuation, precision robotics, and CubeSat thermal analysis. Headed toward humanoid robotics and the intersection of physical systems and human sensing.
+    Junior ME at UIUC building real hardware from scratch — biometric sensing systems, pneumatic actuation, precision robotics, and CubeSat structural and thermal analysis. Headed toward humanoid robotics and the intersection of physical systems and human sensing.
   </p>
   <div class="hero-meta">
     <div class="hero-meta-item">
@@ -678,72 +775,89 @@
       <span class="hero-meta-value">UIUC — Grainger Engineering</span>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">GPA</span>
-      <span class="hero-meta-value">3.9 / 4.0</span>
+      <span class="hero-meta-label">Degree</span>
+      <span class="hero-meta-value">B.S. Mechanical Sciences &amp; Engineering</span>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Location</span>
-      <span class="hero-meta-value">Champaign, IL</span>
+      <span class="hero-meta-label">Graduating</span>
+      <span class="hero-meta-value">May 2028 · GPA 3.9</span>
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Status</span>
-      <span class="hero-meta-value">Open to Opportunities</span>
+      <span class="hero-meta-value">Open to Summer 2027 internships</span>
     </div>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
+  <p class="hero-scroll">
+    <span class="scroll-line" aria-hidden="true"></span>
     Scroll
-  </div>
+  </p>
 </section>
 
-<!-- Ticker -->
+<!-- Ticker: second set is a visual duplicate for the seamless loop, so it is
+     hidden from assistive tech to avoid reading everything twice. -->
 <div class="ticker-wrap">
   <div class="ticker">
-    <span class="ticker-item"><span>★</span> Biometric Sensing</span>
-    <span class="ticker-item"><span>★</span> Electromechanical Systems</span>
-    <span class="ticker-item"><span>★</span> FEA / Thermal Analysis</span>
-    <span class="ticker-item"><span>★</span> PCB Design</span>
-    <span class="ticker-item"><span>★</span> Pneumatic Actuation</span>
-    <span class="ticker-item"><span>★</span> Humanoid Robotics</span>
-    <span class="ticker-item"><span>★</span> Sensor Integration</span>
-    <span class="ticker-item"><span>★</span> Biometric Sensing</span>
-    <span class="ticker-item"><span>★</span> Electromechanical Systems</span>
-    <span class="ticker-item"><span>★</span> FEA / Thermal Analysis</span>
-    <span class="ticker-item"><span>★</span> PCB Design</span>
-    <span class="ticker-item"><span>★</span> Pneumatic Actuation</span>
-    <span class="ticker-item"><span>★</span> Humanoid Robotics</span>
-    <span class="ticker-item"><span>★</span> Sensor Integration</span>
+    <span class="ticker-item"><span aria-hidden="true">★</span> Biometric Sensing</span>
+    <span class="ticker-item"><span aria-hidden="true">★</span> Electromechanical Systems</span>
+    <span class="ticker-item"><span aria-hidden="true">★</span> FEA / Thermal Analysis</span>
+    <span class="ticker-item"><span aria-hidden="true">★</span> PCB Design</span>
+    <span class="ticker-item"><span aria-hidden="true">★</span> Pneumatic Actuation</span>
+    <span class="ticker-item"><span aria-hidden="true">★</span> Humanoid Robotics</span>
+    <span class="ticker-item"><span aria-hidden="true">★</span> Sensor Integration</span>
+    <span class="ticker-item" aria-hidden="true"><span>★</span> Biometric Sensing</span>
+    <span class="ticker-item" aria-hidden="true"><span>★</span> Electromechanical Systems</span>
+    <span class="ticker-item" aria-hidden="true"><span>★</span> FEA / Thermal Analysis</span>
+    <span class="ticker-item" aria-hidden="true"><span>★</span> PCB Design</span>
+    <span class="ticker-item" aria-hidden="true"><span>★</span> Pneumatic Actuation</span>
+    <span class="ticker-item" aria-hidden="true"><span>★</span> Humanoid Robotics</span>
+    <span class="ticker-item" aria-hidden="true"><span>★</span> Sensor Integration</span>
   </div>
 </div>
 
 <!-- Stats -->
-<section style="padding: 60px 48px;">
+<section style="padding: 60px 48px;" aria-label="Key figures">
   <div class="stats-row reveal">
     <div class="stat-block">
       <div class="stat-num">3.9</div>
       <div class="stat-label">GPA at UIUC</div>
     </div>
     <div class="stat-block">
-      <div class="stat-num">3×</div>
-      <div class="stat-label">Award Winner</div>
+      <div class="stat-num">4×</div>
+      <div class="stat-label">Engineering award winner</div>
     </div>
     <div class="stat-block">
-      <div class="stat-num">15</div>
-      <div class="stat-label">Person Team Led</div>
+      <div class="stat-num">0.5<span style="font-size:0.5em">mm</span></div>
+      <div class="stat-label">Gantry positional accuracy</div>
     </div>
     <div class="stat-block">
-      <div class="stat-num">2.5M</div>
-      <div class="stat-label">Patients Impacted</div>
+      <div class="stat-num">2°</div>
+      <div class="stat-label">Gaze tracking accuracy</div>
     </div>
   </div>
 </section>
 
 <!-- Experience -->
 <section id="experience">
-  <div class="section-label">Experience</div>
+  <p class="section-label">Experience</p>
   <h2 class="section-title reveal">Where I've<br>built things.</h2>
 
   <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <span class="exp-date">Sep 2025 — Present</span>
+        <span class="exp-type">Research</span>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-company">LASSI — UIUC</h3>
+        <p class="exp-role">Undergraduate Structures/Thermal Researcher — Champaign, IL</p>
+        <ul class="exp-bullets">
+          <li>Conduct structural FEA on the MonARCH 12U CubeSat deployer interface in Siemens NX, modeling rail contact with CBUSH spring elements, CGAP contact elements, and RBE3 multi-point constraints to replace boundary conditions that did not physically represent satellite–deployer contact</li>
+          <li>Established updated CBUSH stiffness values — 75 N/mm lateral, 100,000 N/mm axial — producing a more realistic stress distribution across the rail interface under launch loads</li>
+          <li>Convert CAD geometry into Thermal Desktop models to evaluate temperature gradients and heat flux across satellite subsystems during orbital cycles, supporting systems engineering under SWaP and radiation constraints</li>
+        </ul>
+      </div>
+    </div>
 
     <div class="exp-item reveal">
       <div class="exp-meta">
@@ -751,12 +865,13 @@
         <span class="exp-type">Internship</span>
       </div>
       <div class="exp-content">
-        <div class="exp-company">International Motors</div>
-        <div class="exp-role">Human Factors & Biometrics Intern — Lisle, IL</div>
+        <h3 class="exp-company">International Motors</h3>
+        <p class="exp-role">Human Factors &amp; Mechanical Design Intern — Lisle, IL</p>
         <ul class="exp-bullets">
-          <li>Building biometric sensing pipelines to capture physiological data during human driving studies</li>
-          <li>Integrating sensors including eye trackers, GSR, heart rate monitors, and SpO2 devices into a unified instrumentation system</li>
-          <li>Developing data collection and synchronization workflows for the Experience Design R&D team</li>
+          <li>Developed a computer-vision gaze tracking system achieving 2° accuracy via PCCR and stereo triangulation across synchronized multi-camera capture, mapping gaze onto a Unity-reconstructed 3D cab environment at 20 FPS</li>
+          <li>Designed custom enclosures and hardware housings in Siemens NX, applying GD&amp;T to 3D-printed components with 6-DOF adjustable mounts and integrated cable routing to meet simulator packaging constraints</li>
+          <li>Supported Experience Design and Clay Studio by selecting materials and planning layouts in Figma, enabling concept sleeper-cab and interior mockups approved for downstream prototyping</li>
+          <li>Analyzed human factors data from 30 participants across workshops and clinic studies, synthesizing findings into thematic groupings and design concepts</li>
         </ul>
       </div>
     </div>
@@ -767,27 +882,51 @@
         <span class="exp-type">Internship</span>
       </div>
       <div class="exp-content">
-        <div class="exp-company">Northrop Grumman Innovation Lab</div>
-        <div class="exp-role">R&D Intern — Baltimore, MD</div>
+        <h3 class="exp-company">Northrop Grumman Innovation Lab</h3>
+        <p class="exp-role">Research &amp; Development Intern — Baltimore, MD</p>
         <ul class="exp-bullets">
-          <li>Designed and prototyped hardware housings integrating Raspberry Pi, sensors, and bone-conduction transducers — validated electromechanical integration across iterative build cycles</li>
-          <li>Led a 4-person team to develop a wearable hardware system integrating AR optics, PCB electronics, and sensor fusion — owned end-to-end mechanical design, prototyping, and physical validation</li>
+          <li>Designed and prototyped 3D CAD hardware housings in SolidWorks integrating a Raspberry Pi, sensors, and bone-conduction transducers; validated electromechanical integration and sensor reliability through iterative build cycles</li>
+          <li>Led a 4-person team developing a wearable hardware system combining AR optics, custom PCB electronics, and sensor-fusion algorithms; owned end-to-end mechanical design, rapid prototyping, and physical validation testing</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Leadership -->
+<section id="leadership">
+  <p class="section-label">Leadership</p>
+  <h2 class="section-title reveal">Teams I've<br>run.</h2>
+
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <span class="exp-date">Sep 2024 — Apr 2026</span>
+        <span class="exp-type">Team Lead</span>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-company">American Society of Mechanical Engineers</h3>
+        <p class="exp-role">Carle-CIMED Product Development Team Lead — Champaign, IL</p>
+        <ul class="exp-bullets">
+          <li>Led a 15-person team building VidaCloud, a smart mattress topper with embedded pressure sensor arrays and pneumatic actuation for pressure ulcer prevention</li>
+          <li>Drove product development from concept through prototype validation, building the data-collection stack with Arduino IDE and custom PCB design</li>
         </ul>
       </div>
     </div>
 
     <div class="exp-item reveal">
       <div class="exp-meta">
-        <span class="exp-date">Sep 2025 — Present</span>
-        <span class="exp-type">Research</span>
+        <span class="exp-date">Jan 2025 — Present</span>
+        <span class="exp-type">Consulting</span>
       </div>
       <div class="exp-content">
-        <div class="exp-company">LASSI — UIUC</div>
-        <div class="exp-role">Undergraduate Structures/Thermal Researcher — Champaign, IL</div>
+        <h3 class="exp-company">International Consulting Network (ICON)</h3>
+        <p class="exp-role">Project Manager &amp; Membership Director — PIMIC AI, Fassforward, HTS Europe, MODO</p>
         <ul class="exp-bullets">
-          <li>Running FEA studies on the deployer interface of the MonARCH 12U CubeSat in Siemens NX, simulating structural loads and validating interface compliance with CubeSat standards</li>
-          <li>Converting CAD geometry into Thermal Desktop models to analyze heat flux and temperature gradients across satellite subsystems during orbital cycles</li>
-          <li>Supporting systems engineering and trade studies under SWaP and radiation constraints</li>
+          <li>Led engagements across 4 international clients in AI, hardware, and manufacturing; conducted market research and go-to-market analysis and presented findings to stakeholders across multiple countries</li>
+          <li>Lead membership recruitment and onboarding to grow the consultant pipeline</li>
         </ul>
       </div>
     </div>
@@ -797,184 +936,268 @@
 
 <!-- Projects -->
 <section id="projects">
-  <div class="section-label">Projects</div>
+  <p class="section-label">Projects</p>
   <h2 class="section-title reveal">Hardware I've<br>shipped.</h2>
 
   <div class="projects-grid">
 
-    <div class="project-card reveal">
-      <div class="project-arrow">↗</div>
-      <div class="project-num">01</div>
-      <div class="project-title">Smart Mattress Topper — Pressure Ulcer Prevention</div>
-      <p class="project-desc">Led a 15-person ASME team building an embedded pressure sensor array with pneumatic actuation to monitor patient pressure points and prevent ulcers. Designed the full hardware stack from PCB to pneumatic repositioning system.</p>
-      <div class="project-tags">
-        <span class="tag">Arduino</span>
-        <span class="tag">PCB Design</span>
-        <span class="tag">Pneumatic Actuation</span>
-        <span class="tag">Sensor Arrays</span>
+    <article class="project-card reveal">
+      <figure class="project-figure">
+        <img src="assets/img/vidacloud-team-eoh.jpg" width="1600" height="1200"
+             alt="The VidaCloud team standing beside their smart mattress topper exhibit at the UIUC Engineering Open House." loading="lazy">
+      </figure>
+      <div class="project-body">
+        <h3 class="project-title">VidaCloud — Smart Pressure Ulcer Prevention System</h3>
+        <p class="project-role">ASME Carle-CIMED Product Development Team · Team Lead · Sep 2024 – Apr 2026</p>
+        <p class="project-desc">Led a 15-person team developing a smart mattress topper with embedded pressure sensor arrays and pneumatic actuation to detect and relieve patient pressure points. Designed and tested a pneumatic repositioning system projected to reduce nurse workload by 30%, building the data-collection stack with Arduino IDE and custom PCB design. Pressure ulcers affect over 2.5 million U.S. patients annually.</p>
+        <div class="project-tags">
+          <span class="tag">Arduino</span>
+          <span class="tag">PCB Design</span>
+          <span class="tag">Pneumatic Actuation</span>
+          <span class="tag">Sensor Arrays</span>
+        </div>
+        <p class="project-award">1st Place, Engineering Industry Impact Award (2026) · 2nd Place (2025), among 100+ projects · Semifinalist, International Tapia Medical Competition</p>
       </div>
-      <div class="project-award">🏆 1st & 2nd Place — Engineering Industry Impact Award (100+ projects) &nbsp;·&nbsp; Semifinalist — International Tapie Medical Competition</div>
-    </div>
+    </article>
 
-    <div class="project-card reveal">
-      <div class="project-arrow">↗</div>
-      <div class="project-num">02</div>
-      <div class="project-title">Cartesian Gantry & Microbot System</div>
-      <p class="project-desc">Designed a high-precision X/Y/Z gantry system for a custom robotic end-effector achieving 0.5mm positional accuracy. Integrated Arduino/ESP32 microcontrollers to synchronize multi-axis movement across the full electromechanical system.</p>
-      <div class="project-tags">
-        <span class="tag">ESP32</span>
-        <span class="tag">Mechatronics</span>
-        <span class="tag">Lead Screw Drives</span>
-        <span class="tag">CAD</span>
+    <article class="project-card reveal">
+      <figure class="project-figure">
+        <img src="assets/img/microbots-gantry.jpg" width="1600" height="1000"
+             alt="Cartesian gantry built from extruded aluminium, with three servo-driven robotic fingers suspended over a test bed holding magnetic microbots." loading="lazy">
+      </figure>
+      <div class="project-body">
+        <h3 class="project-title">Big Hero 6 Microbots — Teleoperated Magnetic Microbot System</h3>
+        <p class="project-role">UIUC Engineering Open House · Mechanical Team Member · Jan – Apr 2026</p>
+        <p class="project-desc">Built an open-source 4-fingered robotic hand for magnetic control over microbots, achieving 0.5 mm positional accuracy. Arduino/ESP32 microcontrollers coordinate the full electromechanical chain — MediaPipe computer-vision hand tracking drives a Cartesian gantry and servo-actuated fingers, whose mounted magnets steer micro-magnetic bots. Future applications include minimally invasive procedures such as clearing blood clots.</p>
+        <div class="project-gallery">
+          <a href="assets/img/microbots-hand.jpg" target="_blank" rel="noopener">
+            <img src="assets/img/microbots-hand.jpg" alt="Close-up of the 3D-printed robotic hand with magnets mounted at the fingertips." loading="lazy">
+          </a>
+          <a href="assets/img/microbots-cv-tracking.jpg" target="_blank" rel="noopener">
+            <img src="assets/img/microbots-cv-tracking.jpg" alt="MediaPipe landmark tracking overlaid on a human hand, beside a cluster of magnetic microbots held in a palm." loading="lazy">
+          </a>
+          <a href="assets/img/microbots-poster.jpg" target="_blank" rel="noopener">
+            <img src="assets/img/microbots-poster.jpg" alt="Full project poster covering system overview, mechanics, apparatus, and future applications. Opens full size." loading="lazy">
+          </a>
+        </div>
+        <div class="project-tags">
+          <span class="tag">ESP32</span>
+          <span class="tag">Mechatronics</span>
+          <span class="tag">Python / MediaPipe</span>
+          <span class="tag">Lead Screw Drives</span>
+          <span class="tag">CAD</span>
+        </div>
+        <p class="project-award">1st Place, Distinguished Tech Award · 2nd Place, Most Engaging Award — UIUC EOH</p>
       </div>
-      <div class="project-award">🏆 1st Place — Distinguished Tech Award (UIUC EOH)</div>
-    </div>
+    </article>
 
-    <div class="project-card reveal">
-      <div class="project-arrow">↗</div>
-      <div class="project-num">03</div>
-      <div class="project-title">MonARCH 12U CubeSat — Thermal & Structural Analysis</div>
-      <p class="project-desc">Running FEA and thermal modeling for a 12U CubeSat at LASSI. Simulating structural loads at the deployer interface in Siemens NX and building Thermal Desktop models to evaluate heat flux across satellite subsystems in orbital cycles.</p>
-      <div class="project-tags">
-        <span class="tag">Siemens NX</span>
-        <span class="tag">Thermal Desktop</span>
-        <span class="tag">FEA</span>
-        <span class="tag">Space Systems</span>
+    <article class="project-card reveal">
+      <figure class="project-figure">
+        <img src="assets/img/ar-visor-cad.jpg" width="1600" height="904"
+             alt="CAD model of the AR Lab Visor: a wraparound safety visor alongside its separate electronics housing components." loading="lazy">
+      </figure>
+      <div class="project-body">
+        <h3 class="project-title">AR Lab Visor — Intelligent Augmented Reality Safety System</h3>
+        <p class="project-role">Northrop Grumman Innovation Lab · Project Lead · May – Oct 2025</p>
+        <p class="project-desc">An AR safety system for laboratory and industrial environments. A CPLIDAR C1 spatial sensor provides real-time hazard detection, identifying nearby obstacles and alerting the wearer before collisions. Workflow monitoring verifies that users follow safety protocols in the correct sequence, and integrated bone-conduction audio delivers hands-free instructional guidance while preserving full environmental awareness — all while meeting standard protective eyewear requirements.</p>
+        <div class="project-gallery">
+          <a href="assets/img/ar-visor-housing.jpg" target="_blank" rel="noopener">
+            <img src="assets/img/ar-visor-housing.jpg" alt="Render detail of the visor frame and the internal electronics housing." loading="lazy">
+          </a>
+        </div>
+        <div class="project-tags">
+          <span class="tag">SolidWorks</span>
+          <span class="tag">Raspberry Pi</span>
+          <span class="tag">LIDAR</span>
+          <span class="tag">PCB Electronics</span>
+          <span class="tag">Sensor Fusion</span>
+        </div>
       </div>
-    </div>
+    </article>
 
-    <div class="project-card reveal">
-      <div class="project-arrow">↗</div>
-      <div class="project-num">04</div>
-      <div class="project-title">AR Wearable Hardware System — Northrop Grumman</div>
-      <p class="project-desc">Designed and prototyped a wearable hardware platform at the Northrop Grumman Innovation Lab integrating Raspberry Pi compute, bone-conduction transducers, custom sensors, and PCB electronics. Led 4-person team through end-to-end design, build, and validation.</p>
-      <div class="project-tags">
-        <span class="tag">Raspberry Pi</span>
-        <span class="tag">PCB Electronics</span>
-        <span class="tag">Sensor Fusion</span>
-        <span class="tag">Wearables</span>
+    <!-- NOTE: the source slides for this image carry proprietary markings from
+         International Motors. Clear it with your manager before publishing, or
+         swap in a redacted diagram you draw yourself. -->
+    <article class="project-card reveal">
+      <figure class="project-figure">
+        <img src="assets/img/gaze-tracking-pipeline.jpg" width="1179" height="1302"
+             alt="Slides showing the gaze tracking pipeline: ChArUco board calibration, PCCR pupil and glint detection, and 3D monitoring in Unity." loading="lazy">
+      </figure>
+      <div class="project-body">
+        <h3 class="project-title">Multi-Camera Gaze Tracking System</h3>
+        <p class="project-role">International Motors · Human Factors &amp; Mechanical Design Intern · May – Aug 2026</p>
+        <p class="project-desc">Computer-vision gaze tracking achieving 2° accuracy via PCCR and stereo triangulation across synchronized multi-camera capture, mapped onto a Unity-reconstructed 3D cab environment at roughly 20 FPS. A 5×7 ChArUco board handles dual-camera intrinsic and extrinsic calibration; MediaPipe iris and face mesh tracking estimate head position and gaze direction in real time. Findings from ~30 participants across clinic studies and workshops informed cab interior design concepts.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">MediaPipe</span>
+          <span class="tag">Unity</span>
+          <span class="tag">Stereo Calibration</span>
+        </div>
       </div>
-    </div>
+    </article>
+
+    <!-- TODO: replace with a Siemens NX FEA stress contour plot of the rail
+         interface. This is the single highest-value image still missing. -->
+    <article class="project-card reveal">
+      <div class="project-body">
+        <h3 class="project-title">MonARCH 12U CubeSat — Deployer Interface Structural FEA</h3>
+        <p class="project-role">LASSI · Undergraduate Structures/Thermal Researcher · Sep 2025 – Present</p>
+        <p class="project-desc">Prior finite element models of the MonARCH deployer interface used boundary conditions that did not physically represent mechanical contact between the satellite and the deployer rails. Rebuilt the model in Siemens NX representing that contact through CBUSH spring elements, CGAP contact elements, and RBE3 multi-point constraints, with force diagrams characterizing rail-interface loads during launch. Updated stiffness values — 75 N/mm lateral, 100,000 N/mm axial — better match physical contact behavior and give a more realistic stress distribution under deployment loads.</p>
+        <p class="project-desc">Also underway: an industry partner challenge adapting MonARCH hardware into a cylindrical form factor, 8 in diameter by 1 m long, volumetrically equivalent to a 32U. The current 226.3 mm square cross-section cannot be inscribed within the cylinder's 203.2 mm inner diameter, so subsystem repackaging along the 1 m length is under investigation.</p>
+        <div class="project-tags">
+          <span class="tag">Siemens NX</span>
+          <span class="tag">FEA</span>
+          <span class="tag">Thermal Desktop</span>
+          <span class="tag">Space Systems</span>
+        </div>
+      </div>
+    </article>
 
   </div>
 </section>
 
 <!-- Skills -->
 <section id="skills">
-  <div class="section-label">Skills</div>
-  <h2 class="section-title reveal">Tools &<br>capabilities.</h2>
+  <p class="section-label">Skills</p>
+  <h2 class="section-title reveal">Tools &amp;<br>capabilities.</h2>
 
   <div class="skills-grid reveal">
     <div class="skill-block">
-      <div class="skill-category">CAD & Simulation</div>
-      <div class="skill-items">
-        <div class="skill-item">Siemens NX <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
-        <div class="skill-item">Fusion 360 <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
-        <div class="skill-item">Thermal Desktop <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
-        <div class="skill-item">AutoCAD <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
-        <div class="skill-item">FEA <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
-      </div>
+      <h3 class="skill-category">CAD &amp; Simulation</h3>
+      <ul class="skill-items">
+        <li>Siemens NX</li>
+        <li>SolidWorks</li>
+        <li>Fusion 360</li>
+        <li>AutoCAD</li>
+        <li>Ansys Thermal Desktop</li>
+        <li>FEA &amp; structural analysis</li>
+        <li>GD&amp;T</li>
+      </ul>
     </div>
 
     <div class="skill-block">
-      <div class="skill-category">Electronics & Embedded</div>
-      <div class="skill-items">
-        <div class="skill-item">Arduino IDE <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
-        <div class="skill-item">PCB Design <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
-        <div class="skill-item">Circuit Design <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
-        <div class="skill-item">ESP32 / Raspberry Pi <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
-        <div class="skill-item">Sensor Integration <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
-      </div>
+      <h3 class="skill-category">Electronics &amp; Embedded</h3>
+      <ul class="skill-items">
+        <li>PCB design</li>
+        <li>Circuit design</li>
+        <li>Arduino IDE</li>
+        <li>ESP32 / Raspberry Pi</li>
+        <li>Sensor integration</li>
+        <li>EmotiBit</li>
+      </ul>
     </div>
 
     <div class="skill-block">
-      <div class="skill-category">Programming</div>
-      <div class="skill-items">
-        <div class="skill-item">Python <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
-        <div class="skill-item">Data Pipeline Dev <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div></div>
-        <div class="skill-item">Hardware Scripting <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></div>
-      </div>
+      <h3 class="skill-category">Software</h3>
+      <ul class="skill-items">
+        <li>Python</li>
+        <li>OpenCV</li>
+        <li>MediaPipe</li>
+        <li>Unity</li>
+        <li>Figma</li>
+        <li>Blender</li>
+      </ul>
     </div>
   </div>
 </section>
 
 <!-- Contact -->
 <section id="contact">
-  <div class="section-label">Contact</div>
+  <p class="section-label">Contact</p>
   <div class="contact-grid reveal">
     <div>
       <h2 class="contact-heading">Let's<br>build<br><span>something.</span></h2>
-      <p class="contact-sub">Open to internship opportunities in humanoid robotics, biometric hardware, defense tech, and aerospace. Reach out directly — I respond fast.</p>
+      <p class="contact-sub">Open to Summer 2027 internships in humanoid robotics, biometric hardware, medical devices, defense tech, and aerospace. Reach out directly — I respond fast.</p>
     </div>
     <div class="contact-links">
       <a class="contact-link" href="mailto:ssb13@illinois.edu">
         ssb13@illinois.edu
-        <span class="contact-link-arrow">↗</span>
+        <span class="contact-link-arrow" aria-hidden="true">↗</span>
       </a>
-      <a class="contact-link" href="https://linkedin.com/in/ssbommisetty" target="_blank">
+      <a class="contact-link" href="https://linkedin.com/in/ssbommisetty" target="_blank" rel="noopener">
         linkedin.com/in/ssbommisetty
-        <span class="contact-link-arrow">↗</span>
+        <span class="contact-link-arrow" aria-hidden="true">↗</span>
       </a>
-      <a class="contact-link" href="tel:3313855335">
-        (331) 385-5335
-        <span class="contact-link-arrow">↗</span>
+      <!-- TODO: point this at your real GitHub username -->
+      <a class="contact-link" href="https://github.com/ssbommi" target="_blank" rel="noopener">
+        github.com/ssbommi
+        <span class="contact-link-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="contact-link" href="assets/Sai_Sanjay_Bommisetty_Resume.pdf">
+        Résumé (PDF)
+        <span class="contact-link-arrow" aria-hidden="true">↗</span>
       </a>
     </div>
   </div>
 </section>
 
+</main>
+
 <footer>
   <span>Sai Sanjay Bommisetty © 2026</span>
-  <span>UIUC Mechanical Engineering — Hoeft T&M Minor</span>
+  <span>UIUC Mechanical Engineering — Hoeft T&amp;M Minor</span>
 </footer>
 
 <script>
-  // Custom cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mouseX = 0, mouseY = 0;
-  let ringX = 0, ringY = 0;
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer  = window.matchMedia('(pointer: fine)').matches;
 
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.style.left = mouseX - 5 + 'px';
-    cursor.style.top = mouseY - 5 + 'px';
-  });
+  // Custom cursor — skipped entirely for touch devices and reduced-motion users
+  if (finePointer && !reduceMotion) {
+    var cursor = document.getElementById('cursor');
+    var ring   = document.getElementById('cursorRing');
+    cursor.style.display = 'block';
+    ring.style.display = 'block';
 
-  function animateRing() {
-    ringX += (mouseX - ringX - 18) * 0.12;
-    ringY += (mouseY - ringY - 18) * 0.12;
-    ring.style.left = ringX + 'px';
-    ring.style.top = ringY + 'px';
-    requestAnimationFrame(animateRing);
+    var mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.left = (mouseX - 5) + 'px';
+      cursor.style.top  = (mouseY - 5) + 'px';
+    });
+
+    (function animateRing() {
+      ringX += (mouseX - ringX - 18) * 0.12;
+      ringY += (mouseY - ringY - 18) * 0.12;
+      ring.style.left = ringX + 'px';
+      ring.style.top  = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    })();
+
+    document.querySelectorAll('a, button').forEach(function (el) {
+      el.addEventListener('mouseenter', function () {
+        cursor.style.transform = 'scale(2.5)';
+        ring.style.transform = 'scale(1.5)';
+      });
+      el.addEventListener('mouseleave', function () {
+        cursor.style.transform = 'scale(1)';
+        ring.style.transform = 'scale(1)';
+      });
+    });
   }
-  animateRing();
 
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'scale(2.5)';
-      ring.style.transform = 'scale(1.5)';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'scale(1)';
-      ring.style.transform = 'scale(1)';
-    });
-  });
+  // Scroll reveal — if unsupported, everything is shown immediately
+  var reveals = document.querySelectorAll('.reveal');
 
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, i * 80);
-      }
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('visible'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry, i) {
+      if (!entry.isIntersecting) return;
+      setTimeout(function () { entry.target.classList.add('visible'); }, i * 80);
+      observer.unobserve(entry.target);
     });
   }, { threshold: 0.1 });
 
-  reveals.forEach(el => observer.observe(el));
+  reveals.forEach(function (el) { observer.observe(el); });
+})();
 </script>
 
 </body>

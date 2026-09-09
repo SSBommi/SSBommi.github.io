@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Sai Sanjay Bommisetty — Mechanical Engineer</title>
-<meta name="description" content="Mechanical engineering junior at UIUC building biometric sensing systems, precision robotics, and CubeSat structures. Open to Summer 2027 internships.">
+<meta name="description" content="Mechanical engineering junior at UIUC building biometric sensing systems, precision robotics, and CubeSat structures. Hoeft Technology &amp; Management minor. Open to Summer 2027 internships.">
 <link rel="canonical" href="https://ssbommi.github.io/">
 
 <meta property="og:type" content="website">
@@ -521,6 +521,55 @@
   .panel-media a { text-decoration: none; display: block; }
   .panel-media a:hover img { opacity: 0.85; }
 
+  /* Coursework — same tab mechanics, denser list layout inside each panel */
+  .course-list { list-style: none; }
+
+  .course-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 24px;
+    align-items: baseline;
+  }
+
+  .course-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .course-list li:first-child { padding-top: 0; }
+
+  .course-code {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+  }
+
+  .course-code strong {
+    display: block;
+    color: var(--text);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: -0.1px;
+    margin-top: 3px;
+  }
+
+  .course-desc {
+    font-size: 12px;
+    color: var(--muted-strong);
+    line-height: 1.75;
+  }
+
+  .course-foundation {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  @media (max-width: 900px) {
+    .course-list li { grid-template-columns: 1fr; gap: 8px; }
+  }
+
   .panel-body p {
     color: var(--muted-strong);
     font-size: 13px;
@@ -867,6 +916,8 @@
   <a class="nav-logo" href="#" aria-label="Sai Sanjay Bommisetty, home">SSB</a>
   <ul class="nav-links">
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#coursework">Coursework</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -885,7 +936,7 @@
     <span>Bommisetty</span>
   </h1>
   <p class="hero-desc">
-    Junior ME at UIUC building real hardware from scratch — biometric sensing systems, pneumatic actuation, precision robotics, and CubeSat structural and thermal analysis. Headed toward humanoid robotics and the intersection of physical systems and human sensing.
+    Junior ME at UIUC building real hardware from scratch — biometric sensing systems, pneumatic actuation, precision robotics, and CubeSat structural and thermal analysis. I work across mechanical design, embedded electronics, and the software that ties them together. I'm also in Class XXXII of the Hoeft Technology &amp; Management Program, a competitive joint minor with Gies College of Business.
   </p>
   <div class="hero-meta">
     <div class="hero-meta-item">
@@ -894,7 +945,7 @@
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Degree</span>
-      <span class="hero-meta-value">B.S. Mechanical Sciences &amp; Engineering</span>
+      <span class="hero-meta-value">B.S. Mechanical Sciences &amp; Engineering<br>Hoeft T&amp;M Minor, Class XXXII</span>
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Graduating</span>
@@ -920,14 +971,14 @@
     <span class="ticker-item"><span aria-hidden="true">★</span> FEA / Thermal Analysis</span>
     <span class="ticker-item"><span aria-hidden="true">★</span> PCB Design</span>
     <span class="ticker-item"><span aria-hidden="true">★</span> Pneumatic Actuation</span>
-    <span class="ticker-item"><span aria-hidden="true">★</span> Humanoid Robotics</span>
+    <span class="ticker-item"><span aria-hidden="true">★</span> Mechanical Design</span>
     <span class="ticker-item"><span aria-hidden="true">★</span> Sensor Integration</span>
     <span class="ticker-item" aria-hidden="true"><span>★</span> Biometric Sensing</span>
     <span class="ticker-item" aria-hidden="true"><span>★</span> Electromechanical Systems</span>
     <span class="ticker-item" aria-hidden="true"><span>★</span> FEA / Thermal Analysis</span>
     <span class="ticker-item" aria-hidden="true"><span>★</span> PCB Design</span>
     <span class="ticker-item" aria-hidden="true"><span>★</span> Pneumatic Actuation</span>
-    <span class="ticker-item" aria-hidden="true"><span>★</span> Humanoid Robotics</span>
+    <span class="ticker-item" aria-hidden="true"><span>★</span> Mechanical Design</span>
     <span class="ticker-item" aria-hidden="true"><span>★</span> Sensor Integration</span>
   </div>
 </div>
@@ -1052,6 +1103,208 @@
   </div>
 </section>
 
+<!-- Education -->
+<section id="education">
+  <p class="section-label">Education</p>
+  <h2 class="section-title reveal">What I've<br>studied.</h2>
+
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <span class="exp-date">Aug 2024 — May 2028</span>
+        <span class="exp-type">B.S.</span>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-company">University of Illinois Urbana-Champaign</h3>
+        <p class="exp-role">Mechanical Sciences &amp; Engineering, Grainger College of Engineering — GPA 3.9 / 4.0</p>
+        <ul class="exp-bullets">
+          <li>Coursework spans mechanical design and manufacturing, solid mechanics and dynamics, thermal and fluid systems, nanosatellite design, and circuits — broken down by area in the section below</li>
+          <li>Awards: 1st Place (2026) and 2nd Place (2025) Engineering Industry Impact Award · 1st Place Distinguished Tech Award · Engineering Visionary Scholarship · Dean's List</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <span class="exp-date">Class XXXII</span>
+        <span class="exp-type">Minor</span>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-company">Hoeft Technology &amp; Management Program</h3>
+        <p class="exp-role">Joint minor — Grainger College of Engineering &amp; Gies College of Business</p>
+        <ul class="exp-bullets">
+          <li>Cohort-based minor admitting roughly 60 students a year across engineering and business; admission is competitive and applications are reviewed by program staff, academic directors, current students, and program alumni</li>
+          <li>Curriculum layers product development, innovation management, and global business onto the engineering degree, with engineering and business students taking the coursework together in mixed teams</li>
+          <li>Capstone puts multidisciplinary teams on a real technical and managerial problem posed by a corporate affiliate; affiliates include Abbott, Boeing, Caterpillar, and Synchrony</li>
+          <li>Includes international immersion experiences and professional development in negotiation, leadership, and cross-functional communication</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Coursework -->
+<section id="coursework">
+  <p class="section-label">Coursework</p>
+  <h2 class="section-title reveal">What I've<br>been taught.</h2>
+
+  <div class="projects-tabs reveal">
+
+    <div class="tablist" role="tablist" aria-label="Coursework areas">
+      <button class="tab" role="tab" id="ctab-1" aria-controls="cpanel-1" aria-selected="true" tabindex="0">
+        <span class="tab-num">01</span>
+        <span class="tab-name">Design &amp; Manufacturing</span>
+      </button>
+      <button class="tab" role="tab" id="ctab-2" aria-controls="cpanel-2" aria-selected="false" tabindex="-1">
+        <span class="tab-num">02</span>
+        <span class="tab-name">Mechanics &amp; Materials</span>
+      </button>
+      <button class="tab" role="tab" id="ctab-3" aria-controls="cpanel-3" aria-selected="false" tabindex="-1">
+        <span class="tab-num">03</span>
+        <span class="tab-name">Thermal &amp; Fluids</span>
+      </button>
+      <button class="tab" role="tab" id="ctab-4" aria-controls="cpanel-4" aria-selected="false" tabindex="-1">
+        <span class="tab-num">04</span>
+        <span class="tab-name">Space Systems</span>
+      </button>
+      <button class="tab" role="tab" id="ctab-5" aria-controls="cpanel-5" aria-selected="false" tabindex="-1">
+        <span class="tab-num">05</span>
+        <span class="tab-name">Electronics &amp; Computing</span>
+      </button>
+      <button class="tab" role="tab" id="ctab-6" aria-controls="cpanel-6" aria-selected="false" tabindex="-1">
+        <span class="tab-num">06</span>
+        <span class="tab-name">Technology &amp; Management</span>
+      </button>
+    </div>
+
+    <div class="tabpanels">
+
+      <div class="tabpanel" role="tabpanel" id="cpanel-1" aria-labelledby="ctab-1" tabindex="0">
+        <h3 class="panel-title">Design &amp; Manufacturing</h3>
+        <p class="panel-role">How a part goes from an idea to something that can actually be built</p>
+        <ul class="course-list">
+          <li>
+            <span class="course-code">ME 370<strong>Mechanical Design I</strong></span>
+            <span class="course-desc">Designing machine elements to survive real loading — failure theories, fatigue life, and the sizing of shafts, fasteners, springs, and bearings. This is where stress analysis stops being an exercise and becomes a design decision.</span>
+          </li>
+          <li>
+            <span class="course-code">ME 270<strong>Design for Manufacturability</strong></span>
+            <span class="course-desc">Matching geometry to process — casting, machining, injection molding, sheet metal — and understanding tolerance stack-up. Why a part that models cleanly can still be expensive or impossible to produce.</span>
+          </li>
+          <li>
+            <span class="course-code">ME 170<strong>Computer-Aided Design</strong></span>
+            <span class="course-desc">Parametric solid modeling, assembly constraints, and engineering drawings. The foundation under the NX and SolidWorks work in my projects.</span>
+          </li>
+          <li>
+            <span class="course-code">ENG 177<strong>Spatial Visualization</strong></span>
+            <span class="course-desc">Reading and sketching three-dimensional geometry from orthographic views and rotating parts mentally. Unglamorous, and it makes every CAD task afterward faster.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="cpanel-2" aria-labelledby="ctab-2" tabindex="0" hidden>
+        <h3 class="panel-title">Mechanics &amp; Materials</h3>
+        <p class="panel-role">How structures carry load, how they move, and how they fail</p>
+        <ul class="course-list">
+          <li>
+            <span class="course-code">TAM 251<strong>Introductory Solid Mechanics</strong></span>
+            <span class="course-desc">Stress and strain under axial load, torsion, and bending; beam deflection, buckling, and Mohr's circle for combined states. The direct groundwork for the CubeSat interface FEA.</span>
+          </li>
+          <li>
+            <span class="course-code">TAM 212<strong>Introductory Dynamics</strong></span>
+            <span class="course-desc">Kinematics and kinetics of particles and rigid bodies — work-energy methods, impulse and momentum, rotation about a fixed axis.</span>
+          </li>
+          <li>
+            <span class="course-code">TAM 210<strong>Introduction to Statics</strong></span>
+            <span class="course-desc">Force and moment equilibrium, trusses and frames, friction, centroids, and distributed loads. Everything structural rests on this.</span>
+          </li>
+          <li>
+            <span class="course-code">ME 340<strong>Dynamics of Mechanical Systems</strong></span>
+            <span class="course-desc">Modeling mechanical systems as differential equations — free and forced vibration, damping, resonance, and the transfer function view that leads into control.</span>
+          </li>
+          <li>
+            <span class="course-code">ME 330<strong>Engineering Materials</strong></span>
+            <span class="course-desc">Why materials behave the way they do — crystal structure, phase diagrams, heat treatment, and the failure mechanisms behind fatigue, creep, and fracture. The basis for selecting a material rather than defaulting to one.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="cpanel-3" aria-labelledby="ctab-3" tabindex="0" hidden>
+        <h3 class="panel-title">Thermal &amp; Fluids</h3>
+        <p class="panel-role">Energy transfer and flow — the physics behind the thermal modeling work</p>
+        <ul class="course-list">
+          <li>
+            <span class="course-code">ME 200<strong>Thermodynamics</strong></span>
+            <span class="course-desc">First and second laws, property relations, entropy, and power and refrigeration cycles. What lets a heat balance on a satellite subsystem mean something.</span>
+          </li>
+          <li>
+            <span class="course-code">ME 310<strong>Fundamentals of Fluid Dynamics</strong></span>
+            <span class="course-desc">Continuity, momentum, and energy for fluid flow — Bernoulli, viscous and boundary-layer behavior, and dimensional analysis. Also where the continuum assumption gets defined, which is exactly what stops holding in the VLEO work.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="cpanel-4" aria-labelledby="ctab-4" tabindex="0" hidden>
+        <h3 class="panel-title">Space Systems</h3>
+        <p class="panel-role">Small satellite design, taken twice as coursework and once as a build</p>
+        <ul class="course-list">
+          <li>
+            <span class="course-code">AE 298<strong>Introduction to Nanosatellite Design</strong></span>
+            <span class="course-desc">CubeSat form factors, subsystem architecture — power, ADCS, comms, structures, thermal — and how mission requirements flow down into hardware constraints.</span>
+          </li>
+          <li>
+            <span class="course-code">ENG 491<strong>Nanosatellite Design Build I</strong></span>
+            <span class="course-desc">The hands-on counterpart: working on a real satellite build within a student team rather than analyzing one on paper.</span>
+          </li>
+          <li>
+            <span class="course-code">ENG 491<strong>CubeSat I</strong></span>
+            <span class="course-desc">Continuation of the build sequence, running alongside my structures and thermal work at LASSI.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="cpanel-5" aria-labelledby="ctab-5" tabindex="0" hidden>
+        <h3 class="panel-title">Electronics &amp; Computing</h3>
+        <p class="panel-role">The electrical and software half of every project on this site</p>
+        <ul class="course-list">
+          <li>
+            <span class="course-code">ECE 205<strong>Electrical &amp; Electronic Circuits</strong></span>
+            <span class="course-desc">Circuit analysis, transient and steady-state AC response, operational amplifiers, and semiconductor devices. What made the VidaCloud solenoid driver circuit something I could design rather than copy.</span>
+          </li>
+          <li>
+            <span class="course-code">ECE 206<strong>Electrical &amp; Electronics Lab</strong></span>
+            <span class="course-desc">Building and measuring the circuits from ECE 205 — instrumentation, probing, and finding out where theory and a breadboard disagree.</span>
+          </li>
+          <li>
+            <span class="course-code">CS 101<strong>Intro Computing for Engineering &amp; Science</strong></span>
+            <span class="course-desc">Programming fundamentals aimed at numerical and engineering problems — the starting point for the Python and OpenCV work in the gaze tracking pipeline.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="cpanel-6" aria-labelledby="ctab-6" tabindex="0" hidden>
+        <h3 class="panel-title">Technology &amp; Management</h3>
+        <p class="panel-role">Coursework from the Hoeft T&amp;M minor</p>
+        <ul class="course-list">
+          <li>
+            <span class="course-code">TMGT 367<strong>Management of Innovation and Technology</strong></span>
+            <span class="course-desc">How organizations develop and commercialize technology — innovation strategy, technology adoption, and the structures that decide whether a good idea ships.</span>
+          </li>
+          <li>
+            <span class="course-code">BADM 365<strong>New Product Marketing</strong></span>
+            <span class="course-desc">Taking a product from concept to market — customer research, positioning, and launch planning. The counterweight to designing something without asking who it's for.</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="course-foundation">Foundation: Calculus II and III, Differential Equations, University Physics (Mechanics and Electricity &amp; Magnetism), General Chemistry I and II with labs.</p>
+</section>
+
 <!-- Projects -->
 <section id="projects">
   <p class="section-label">Projects</p>
@@ -1104,7 +1357,7 @@
 
           <p><strong>What we built.</strong> A mattress topper that closes that loop automatically. An embedded pressure sensor array maps contact pressure across the patient's body in real time. Where readings stay elevated past a threshold, a pneumatic actuation system inflates and deflates bladders beneath that region to shift load off the affected tissue — repositioning continuously and in small increments rather than in scheduled bulk movements.</p>
 
-          <p><strong>My role.</strong> I ran the team across the full arc from concept to validated prototype, and owned the data-collection stack directly: the sensor array wiring, the custom PCB, and the Arduino firmware reading and logging pressure data.</p>
+          <p><strong>My role.</strong> I led the team, and my own hands-on work was the pneumatics. I researched and selected the foam cores, placed them, and routed the air channels through the topper, then worked through combinations of channel geometry, pumps, and valve types to find something that held pressure without constant retuning. What worked was a one-way valve paired with a release valve feeding the air valves — a configuration robust enough to need almost no adjustment once set. From there I built the wiring schematic and picked the components to drive it: nine solenoid one-way valves switched through TIP102 NPN Darlington transistors, plus the DC pumps supplying air.</p>
 
           <p><strong>Where it landed.</strong> The pneumatic repositioning system is projected to reduce nurse repositioning workload by roughly 30%. The project took 2nd Place in the Engineering Industry Impact Award in 2025, returned to take 1st Place in 2026 against a field of over 100 engineering projects, and reached semifinals in the International Tapia Medical Competition.</p>
         </div>
@@ -1114,18 +1367,20 @@
             <h4>What I did</h4>
             <ul>
               <li>Led a 15-person team from concept through validated prototype</li>
-              <li>Designed the custom PCB and sensor array wiring</li>
-              <li>Wrote Arduino firmware for pressure data acquisition and logging</li>
-              <li>Ran the pneumatic repositioning system through design and bench testing</li>
+              <li>Researched and selected foam cores, then placed them and routed the air channels</li>
+              <li>Tested channel geometries, pumps, and valve types to find a configuration that held pressure</li>
+              <li>Landed on a one-way valve with release valve feeding the air valves — robust with minimal retuning</li>
+              <li>Built the wiring schematic driving 9 solenoid valves through TIP102 Darlington transistors and DC pumps</li>
             </ul>
           </div>
           <div class="panel-col">
             <h4>Skills gained</h4>
             <ul>
+              <li>Pneumatic circuit design — channel routing, valve selection, pressure retention</li>
+              <li>Switching inductive loads with Darlington transistors, and why they suit solenoid drive</li>
+              <li>Material selection through testing rather than spec sheets alone</li>
+              <li>Converging on a robust configuration instead of one that only works when freshly tuned</li>
               <li>Running a large team with real interface dependencies between subgroups</li>
-              <li>Translating clinical requirements into engineering specifications</li>
-              <li>Pneumatic actuation design — bladder layout, inflation control, timing</li>
-              <li>Sensor array design and multiplexed analog data acquisition</li>
             </ul>
           </div>
         </div>
@@ -1393,7 +1648,13 @@
 
           <p><strong>The result.</strong> Tuning the CBUSH stiffness to 75 N/mm laterally and 100,000 N/mm axially reproduced physical contact behavior much more closely than the previous setup. The lateral value is deliberately soft and the axial value deliberately stiff, which is what the physical interface does: the rails resist axial motion almost rigidly while allowing some lateral give.</p>
 
-          <p><strong>Also underway.</strong> An external industry partner posed a repackaging challenge: fit MonARCH hardware into a cylinder 8 inches in diameter and 1 meter long, volumetrically equivalent to a 32U. Preliminary geometry rules out the easy answer — MonARCH's 226.3 mm square cross-section will not inscribe within the cylinder's 203.2 mm inner diameter. The remaining option is redistributing subsystems along the cylinder's 1 m length, which is what I'm investigating now.</p>
+          <p><strong>Also underway: extending the thermal model to VLEO.</strong> Very low Earth orbit sits below 400 km, where the payoff is higher-resolution Earth observation, cheaper launch and operations, and self-cleaning orbits that decay without deorbit hardware. The cost is a thermal environment that a standard LEO model doesn't cover. I'm working out how to extend our existing model to handle it.</p>
+
+          <p>Aerothermal heating is the term LEO models leave out entirely. At these altitudes the air is thin enough that the Knudsen number can exceed the spacecraft's own length, so there's no boundary layer and no bow shock, and Navier-Stokes doesn't apply — the continuum assumption breaks. Instead individual particles strike the surface at orbital velocity, deposit energy according to the thermal accommodation coefficient, and reflect. The free molecular heating relation <em>Q</em> = ½ · α · ρ(t) · U(t)³ captures it, but the cube on velocity means the answer is only as good as the density history, and ρ varies continuously along the orbit.</p>
+
+          <p>That's the real modeling problem, and there are two routes. NRLMSISE-00 gives ρ(t) and U(t) but won't run inside Thermal Desktop, so the fluxes get computed externally and applied as time-varying heat loads per surface, with a small residual flux on nominally shadowed faces to approximate diffuse scattering. Alternatively RadCAD traces the atmospheric flow as rays, which correctly handles appendages shadowing surfaces behind them and rays striking concave geometry twice — but it can't do ρ(t) and is expensive to run. The workable path is a static-density RadCAD case for the geometry effects, scaled by a time-dependent multiplier derived from NRLMSISE-00, then validated by plotting the resulting flux against an independent MATLAB calculation over several orbits.</p>
+
+          <p>The environmental loads shift too. Earth fills most of the nadir hemisphere at these altitudes, so view factors reach 0.9 or above versus roughly 0.7 at 800 km — albedo lands 300 to 400 W/m² on a nadir surface, a quarter of the solar constant, and Earth IR adds another 218 to 244 W/m² that never switches off, even in eclipse. A nadir-facing radiator is therefore looking at a 250 K sink instead of 4 K deep space, which is why radiators want zenith or orbit-normal here. Atomic oxygen makes it worse over time: it erodes Kapton and organic coatings on ram-facing surfaces, so the hot case has to run end-of-life absorptivity, and that degradation is often what decides whether the design closes.</p>
 
           <p>On the thermal side, I convert CAD geometry into Thermal Desktop models to evaluate temperature gradients and heat flux across satellite subsystems through orbital cycles, supporting systems engineering trades under SWaP and radiation constraints.</p>
         </div>
@@ -1407,7 +1668,8 @@
               <li>Derived stiffness values (75 N/mm lateral, 100,000 N/mm axial) matching contact behavior</li>
               <li>Developed force diagrams characterizing rail-interface launch loads</li>
               <li>Build Thermal Desktop models for orbital temperature gradient and heat flux analysis</li>
-              <li>Running geometric feasibility analysis for a 32U-equivalent cylindrical repackaging</li>
+              <li>Scoping how to extend the LEO thermal model to VLEO, where aerothermal heating dominates</li>
+              <li>Evaluating NRLMSISE-00 and RadCAD approaches for time-varying free molecular heating</li>
             </ul>
           </div>
           <div class="panel-col">
@@ -1416,9 +1678,9 @@
               <li>Contact modeling in FEA — when bonded constraints lie to you and what to use instead</li>
               <li>Element selection as a modeling decision, not a default</li>
               <li>Validating a model against physical behavior rather than trusting it converged</li>
-              <li>Thermal analysis across orbital cycles under SWaP constraints</li>
-              <li>CubeSat standards and deployer interface requirements</li>
-              <li>Inheriting someone else's model and finding what's wrong with it</li>
+              <li>Rarefied flow regimes and where continuum assumptions stop holding</li>
+              <li>Orbital thermal environments — solar, albedo, Earth IR, and how view factors shift with altitude</li>
+              <li>Reading primary literature to scope a problem the existing tooling doesn't cover</li>
             </ul>
           </div>
         </div>
@@ -1428,6 +1690,8 @@
           <span class="tag">FEA</span>
           <span class="tag">Contact Modeling</span>
           <span class="tag">Thermal Desktop</span>
+          <span class="tag">RadCAD</span>
+          <span class="tag">Orbital Thermal Analysis</span>
           <span class="tag">Space Systems</span>
         </div>
       </div>
@@ -1487,7 +1751,7 @@
   <div class="contact-grid reveal">
     <div>
       <h2 class="contact-heading">Let's<br>build<br><span>something.</span></h2>
-      <p class="contact-sub">Open to Summer 2027 internships in humanoid robotics, biometric hardware, medical devices, defense tech, and aerospace. Reach out directly — I respond fast.</p>
+      <p class="contact-sub">Open to Summer 2027 internships across mechanical design, robotics and automation, medical devices, aerospace, and defense. Reach out directly — I respond fast.</p>
     </div>
     <div class="contact-links">
       <a class="contact-link" href="mailto:ssb13@illinois.edu">
@@ -1559,31 +1823,36 @@
     });
   }
 
-  // Project tabs — WAI-ARIA tabs pattern with arrow/Home/End keys
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab[role="tab"]'));
+  // Tabs — WAI-ARIA pattern with arrow/Home/End keys. Scoped per tablist so
+  // the Projects and Coursework groups operate independently.
+  document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+    if (!tabs.length) return;
 
-  function selectTab(tab, focus) {
-    tabs.forEach(function (t) {
-      var selected = (t === tab);
-      t.setAttribute('aria-selected', selected ? 'true' : 'false');
-      t.setAttribute('tabindex', selected ? '0' : '-1');
-      document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
-    });
-    if (focus) tab.focus();
-  }
+    function selectTab(tab, focus) {
+      tabs.forEach(function (t) {
+        var selected = (t === tab);
+        t.setAttribute('aria-selected', selected ? 'true' : 'false');
+        t.setAttribute('tabindex', selected ? '0' : '-1');
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !selected;
+      });
+      if (focus) tab.focus();
+    }
 
-  tabs.forEach(function (tab, i) {
-    tab.addEventListener('click', function () { selectTab(tab, false); });
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { selectTab(tab, false); });
 
-    tab.addEventListener('keydown', function (e) {
-      var next = null;
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
-      else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
-      else if (e.key === 'Home') next = tabs[0];
-      else if (e.key === 'End') next = tabs[tabs.length - 1];
-      if (!next) return;
-      e.preventDefault();
-      selectTab(next, true);
+      tab.addEventListener('keydown', function (e) {
+        var next = null;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+        else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+        else if (e.key === 'Home') next = tabs[0];
+        else if (e.key === 'End') next = tabs[tabs.length - 1];
+        if (!next) return;
+        e.preventDefault();
+        selectTab(next, true);
+      });
     });
   });
 

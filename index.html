@@ -477,8 +477,9 @@
     margin-bottom: 28px;
   }
 
-  /* Images are contained, never cropped — the source set runs from small
-     squares to tall portrait slides and `cover` was slicing all of them. */
+  /* Every image is pre-rendered onto a uniform 1600x1200 canvas with #0d0d0d
+     letterbox fill, so the frame background matches the fill exactly and the
+     seam is invisible. No cropping and no per-image size variation. */
   .panel-figure {
     margin: 0 0 28px;
     background: #0d0d0d;
@@ -487,20 +488,29 @@
 
   .panel-figure img {
     width: 100%;
-    max-height: 420px;
-    object-fit: contain;
-    padding: 12px;
+    aspect-ratio: 4 / 3;
+    display: block;
   }
 
   .panel-figure figcaption {
     font-size: 11px;
     color: var(--muted);
-    padding: 0 16px 14px;
+    padding: 12px 16px 14px;
     line-height: 1.6;
+    background: var(--card);
+    border-top: 1px solid var(--border);
   }
 
   .panel-figure a { text-decoration: none; display: block; }
-  .panel-figure a:hover { background: #121212; }
+  .panel-figure a:hover img { opacity: 0.88; }
+
+  .panel-figure video {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    display: block;
+    background: #0d0d0d;
+    object-fit: contain;
+  }
 
   .panel-body p {
     color: var(--muted-strong);
@@ -1070,7 +1080,7 @@
         <p class="panel-role">ASME Carle-CIMED Product Development Team · Team Lead · Sep 2024 – Apr 2026</p>
 
         <figure class="panel-figure">
-          <img src="assets/img/vidacloud-team-eoh.jpg" width="800" height="600"
+          <img src="assets/img/vidacloud-team-eoh.jpg" width="1600" height="1200"
                alt="The VidaCloud team standing beside their smart mattress topper exhibit at the UIUC Engineering Open House." loading="lazy">
           <figcaption>The VidaCloud team and prototype at the UIUC Engineering Open House.</figcaption>
         </figure>
@@ -1125,7 +1135,7 @@
         <p class="panel-role">UIUC Engineering Open House · Mechanical Team Member · Jan – Apr 2026</p>
 
         <figure class="panel-figure">
-          <img src="assets/img/microbots-gantry.jpg" width="635" height="568"
+          <img src="assets/img/microbots-gantry.jpg" width="1600" height="1200"
                alt="Cartesian gantry built from repurposed 3D printer framing, with servo-driven robotic fingers suspended over an acrylic test bed holding magnetic microbots." loading="lazy">
           <figcaption>The gantry and end effector over the acrylic display bed. Fingers carry permanent magnets that steer the bots below.</figcaption>
         </figure>
@@ -1144,7 +1154,7 @@
 
         <figure class="panel-figure">
           <a href="assets/img/microbots-cv-tracking.jpg" target="_blank" rel="noopener">
-            <img src="assets/img/microbots-cv-tracking.jpg" width="647" height="369"
+            <img src="assets/img/microbots-cv-tracking.jpg" width="1600" height="1200"
                  alt="MediaPipe landmark tracking overlaid on a human hand on screen, beside a cluster of black magnetic microbots held in a palm." loading="lazy">
           </a>
           <figcaption>Left: MediaPipe landmark tracking driving the gantry. Right: the 3 mm twist-tie microbots. Click to open full size.</figcaption>
@@ -1197,7 +1207,7 @@
         <p class="panel-role">Northrop Grumman Innovation Lab · Project Lead · May – Oct 2025</p>
 
         <figure class="panel-figure">
-          <img src="assets/img/ar-visor-cad.jpg" width="1600" height="904"
+          <img src="assets/img/ar-visor-cad.jpg" width="1600" height="1200"
                alt="CAD model of the AR Lab Visor: a wraparound safety visor alongside its separate electronics housing components in a Fusion 360 workspace." loading="lazy">
           <figcaption>CAD assembly of the visor and its separable electronics housings.</figcaption>
         </figure>
@@ -1212,13 +1222,6 @@
           <p><strong>My role.</strong> I led a four-person team and owned the mechanical work end to end. That meant designing the visor frame and internal electronics housings in SolidWorks to package a Raspberry Pi, the LIDAR unit, custom PCB electronics, and the transducers into something wearable — then building, testing, and revising through iterative cycles. Each build round surfaced integration and sensor-reliability issues that only appear once the hardware is physically assembled, which is the part CAD cannot tell you.</p>
         </div>
 
-        <figure class="panel-figure">
-          <a href="assets/img/ar-visor-housing.jpg" target="_blank" rel="noopener">
-            <img src="assets/img/ar-visor-housing.jpg" width="1600" height="1176"
-                 alt="Render detail of the visor frame edge and the internal electronics housing with a circuit board seated inside." loading="lazy">
-          </a>
-          <figcaption>Housing detail — frame edge and internal electronics bay. Click to open full size.</figcaption>
-        </figure>
 
         <div class="panel-grid">
           <div class="panel-col">
@@ -1261,12 +1264,48 @@
         <p class="panel-role">International Motors · Human Factors &amp; Mechanical Design Intern · May – Aug 2026</p>
 
         <figure class="panel-figure">
-          <a href="assets/img/gaze-tracking-pipeline.jpg" target="_blank" rel="noopener">
-            <img src="assets/img/gaze-tracking-pipeline.jpg" width="1179" height="1302"
-                 alt="Pipeline slides showing three stages: ChArUco board camera calibration, PCCR pupil and glint detection with MediaPipe face mesh, and 3D gaze monitoring in Unity." loading="lazy">
+          <a href="assets/img/gaze-camera-rig.jpg" target="_blank" rel="noopener">
+            <img src="assets/img/gaze-camera-rig.jpg" width="1600" height="1200"
+                 alt="Camera rig clamped to an extruded aluminium rail: an IR camera board on a 3D-printed bracket, a ring of infrared illuminator LEDs below it, and a webcam mounted alongside." loading="lazy">
           </a>
-          <figcaption>The three-stage pipeline: calibration, gaze estimation, 3D monitoring. Click to open full size.</figcaption>
+          <figcaption>One capture node — IR camera board on a 3D-printed bracket, infrared illuminator ring for corneal glint, and a synchronized RGB webcam, rail-mounted for 6-DOF adjustment.</figcaption>
         </figure>
+
+        <figure class="panel-figure">
+          <a href="assets/img/gaze-face-mesh-calibration.jpg" target="_blank" rel="noopener">
+            <img src="assets/img/gaze-face-mesh-calibration.jpg" width="1600" height="1200"
+                 alt="Two synchronized camera views of the same person, each overlaid with a MediaPipe face mesh and a magenta gaze vector. Overlays read center calibrated, face and gaze OK, and a depth of roughly 60 centimetres." loading="lazy">
+          </a>
+          <figcaption>Both cameras locked onto the same subject after center calibration. MediaPipe face mesh gives head pose; the magenta vector is estimated gaze direction, with depth resolved by stereo triangulation.</figcaption>
+        </figure>
+
+        <figure class="panel-figure">
+          <a href="assets/img/gaze-ir-pccr-debug.jpg" target="_blank" rel="noopener">
+            <img src="assets/img/gaze-ir-pccr-debug.jpg" width="1600" height="1200"
+                 alt="Debug windows showing thresholded infrared eye images, isolated left and right eye views with detected pupil ellipses and glint markers, a console log, and the raw infrared feed with both eyes bounded in blue and green." loading="lazy">
+          </a>
+          <figcaption>PCCR running live. Thresholded IR views isolate pupil and corneal glint; the per-eye windows show the fitted pupil ellipse and detected glint with confidence values, and the offset between the two yields gaze direction.</figcaption>
+        </figure>
+
+        <figure class="panel-figure">
+          <video src="assets/img/gaze-unity-pointcloud.mp4"
+                 poster="assets/img/gaze-unity-poster.jpg"
+                 width="1600" height="1200"
+                 controls muted loop playsinline preload="none"
+                 aria-label="Screen capture of gaze markers moving across a 3D point cloud reconstruction of the truck cab in Unity."></video>
+          <figcaption>Gaze landing in 3D. Vectors stream into Unity, which holds a scanned point cloud of the cab — orange markers show where the driver is looking, and the grey sphere tracks head position.</figcaption>
+        </figure>
+
+        <figure class="panel-figure">
+          <a href="assets/img/gaze-heatmap-concept.jpg" target="_blank" rel="noopener">
+            <img src="assets/img/gaze-heatmap-concept.jpg" width="1600" height="1200"
+                 alt="Concept mockup of a truck infotainment screen with a coloured gaze heatmap overlaid, showing hotspots on the navigation tile, radio tile, and the row of climate controls." loading="lazy">
+          </a>
+          <figcaption>Concept mockup I made, not measured data — an illustration of how aggregated gaze would surface as an attention heatmap over the HMI, showing which interface regions pull the eye and for how long.</figcaption>
+        </figure>
+
+        <!-- Also available but not enabled: assets/img/gaze-simulator-cab.jpg,
+             a wide shot of the full simulator cab. Add only if cleared. -->
 
         <div class="panel-body">
           <p><strong>The question.</strong> When a driver is operating a truck cab, where are they actually looking, and for how long? Interior design decisions — display placement, control layout, mirror geometry — depend on that answer, and self-reported data isn't reliable enough to design against. The team needed measured gaze, mapped into the real geometry of the cab.</p>

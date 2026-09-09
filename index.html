@@ -477,40 +477,49 @@
     margin-bottom: 28px;
   }
 
-  /* Every image is pre-rendered onto a uniform 1600x1200 canvas with #0d0d0d
-     letterbox fill, so the frame background matches the fill exactly and the
-     seam is invisible. No cropping and no per-image size variation. */
-  .panel-figure {
-    margin: 0 0 28px;
-    background: #0d0d0d;
+  /* Media collage. Every image is pre-rendered onto a uniform 1100x825 canvas
+     with #0d0d0d fill at its NATIVE resolution — nothing is upscaled or
+     cropped, so letterbox bars vary while the frame never does. Figures sit in
+     a grid rather than stacked full-width, which keeps long panels readable. */
+  .panel-media {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin: 0 0 32px;
+    background: var(--border);
     border: 1px solid var(--border);
   }
 
-  .panel-figure img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    display: block;
+  .panel-media figure {
+    margin: 0;
+    background: #0d0d0d;
+    display: flex;
+    flex-direction: column;
   }
 
-  .panel-figure figcaption {
+  .panel-media figure.wide { grid-column: 1 / -1; }
+
+  .panel-media img,
+  .panel-media video {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    display: block;
+    background: #0d0d0d;
+  }
+
+  .panel-media figcaption {
     font-size: 11px;
     color: var(--muted);
     padding: 12px 16px 14px;
     line-height: 1.6;
     background: var(--card);
     border-top: 1px solid var(--border);
+    flex: 1;
   }
 
-  .panel-figure a { text-decoration: none; display: block; }
-  .panel-figure a:hover img { opacity: 0.88; }
-
-  .panel-figure video {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    display: block;
-    background: #0d0d0d;
-    object-fit: contain;
-  }
+  .panel-media a { text-decoration: none; display: block; }
+  .panel-media a:hover img { opacity: 0.85; }
 
   .panel-body p {
     color: var(--muted-strong);
@@ -612,6 +621,7 @@
     .tab[aria-selected="true"] { border-left-color: transparent; border-top-color: var(--accent); }
     .tabpanel { padding: 28px 24px 32px; }
     .panel-grid { grid-template-columns: 1fr; }
+    .panel-media { grid-template-columns: 1fr; }
   }
 
   /* Skills */
@@ -1079,18 +1089,22 @@
         <h3 class="panel-title">VidaCloud — Smart Pressure Ulcer Prevention System</h3>
         <p class="panel-role">ASME Carle-CIMED Product Development Team · Team Lead · Sep 2024 – Apr 2026</p>
 
-        <figure class="panel-figure">
-          <img src="assets/img/vidacloud-team-eoh.jpg" width="1600" height="1200"
-               alt="The VidaCloud team standing beside their smart mattress topper exhibit at the UIUC Engineering Open House." loading="lazy">
-          <figcaption>The VidaCloud team and prototype at the UIUC Engineering Open House.</figcaption>
-        </figure>
+        <div class="panel-media">
+          <figure class="wide">
+            <a href="assets/img/vidacloud-team-eoh.jpg" target="_blank" rel="noopener">
+              <img src="assets/img/vidacloud-team-eoh.jpg" width="1100" height="825"
+                   alt="The VidaCloud team standing beside their smart mattress topper exhibit at the UIUC Engineering Open House." loading="lazy">
+            </a>
+            <figcaption>The team and prototype at the UIUC Engineering Open House.</figcaption>
+          </figure>
+        </div>
 
         <div class="panel-body">
-          <p><strong>The problem.</strong> Pressure ulcers form when a patient stays in one position long enough for sustained contact pressure to cut off blood flow to the tissue underneath. They affect over 2.5 million U.S. patients annually, and the standard prevention protocol is manual: nursing staff physically reposition patients on a fixed schedule, whether or not that particular patient actually needs it at that moment.</p>
+          <p><strong>The problem.</strong> Pressure ulcers form when a patient stays in one position long enough for sustained contact pressure to cut off blood flow to the tissue underneath. They affect over 2.5 million U.S. patients annually, and the standard prevention protocol is manual: nursing staff physically reposition patients on a fixed schedule, whether or not that particular patient needs it at that moment.</p>
 
-          <p><strong>What we built.</strong> Working with Carle Health and CIMED clinicians, I led a 15-person team building a mattress topper that closes that loop automatically. An embedded pressure sensor array maps contact pressure across the patient's body in real time. Where readings stay elevated past a threshold, a pneumatic actuation system inflates and deflates bladders beneath that region to shift load off the affected tissue — repositioning the patient continuously and in small increments rather than in scheduled bulk movements.</p>
+          <p><strong>What we built.</strong> A mattress topper that closes that loop automatically. An embedded pressure sensor array maps contact pressure across the patient's body in real time. Where readings stay elevated past a threshold, a pneumatic actuation system inflates and deflates bladders beneath that region to shift load off the affected tissue — repositioning continuously and in small increments rather than in scheduled bulk movements.</p>
 
-          <p><strong>My role.</strong> I ran the team across the full arc from concept to validated prototype, and owned the data-collection stack directly: the sensor array wiring, the custom PCB, and the Arduino firmware reading and logging pressure data. Coordinating a group that size meant splitting the work into sensing, pneumatics, and enclosure subteams and keeping their interfaces defined well enough that the pieces integrated when they came back together.</p>
+          <p><strong>My role.</strong> I ran the team across the full arc from concept to validated prototype, and owned the data-collection stack directly: the sensor array wiring, the custom PCB, and the Arduino firmware reading and logging pressure data.</p>
 
           <p><strong>Where it landed.</strong> The pneumatic repositioning system is projected to reduce nurse repositioning workload by roughly 30%. The project took 2nd Place in the Engineering Industry Impact Award in 2025, returned to take 1st Place in 2026 against a field of over 100 engineering projects, and reached semifinals in the International Tapia Medical Competition.</p>
         </div>
@@ -1099,11 +1113,10 @@
           <div class="panel-col">
             <h4>What I did</h4>
             <ul>
-              <li>Led a 15-person team across sensing, pneumatics, and enclosure subteams</li>
+              <li>Led a 15-person team from concept through validated prototype</li>
               <li>Designed the custom PCB and sensor array wiring</li>
               <li>Wrote Arduino firmware for pressure data acquisition and logging</li>
               <li>Ran the pneumatic repositioning system through design and bench testing</li>
-              <li>Worked directly with Carle Health and CIMED clinicians on requirements</li>
             </ul>
           </div>
           <div class="panel-col">
@@ -1113,7 +1126,6 @@
               <li>Translating clinical requirements into engineering specifications</li>
               <li>Pneumatic actuation design — bladder layout, inflation control, timing</li>
               <li>Sensor array design and multiplexed analog data acquisition</li>
-              <li>Iterating a medical device concept toward something testable, not just demoable</li>
             </ul>
           </div>
         </div>
@@ -1134,39 +1146,39 @@
         <h3 class="panel-title">Big Hero 6 Microbots — Teleoperated Magnetic Microbot System</h3>
         <p class="panel-role">UIUC Engineering Open House · Mechanical Team Member · Jan – Apr 2026</p>
 
-        <figure class="panel-figure">
-          <img src="assets/img/microbots-gantry.jpg" width="1600" height="1200"
-               alt="Cartesian gantry built from repurposed 3D printer framing, with servo-driven robotic fingers suspended over an acrylic test bed holding magnetic microbots." loading="lazy">
-          <figcaption>The gantry and end effector over the acrylic display bed. Fingers carry permanent magnets that steer the bots below.</figcaption>
-        </figure>
+        <div class="panel-media">
+          <figure>
+            <a href="assets/img/microbots-gantry.jpg" target="_blank" rel="noopener">
+              <img src="assets/img/microbots-gantry.jpg" width="1100" height="825"
+                   alt="Cartesian gantry built from repurposed 3D printer framing, with servo-driven robotic fingers suspended over an acrylic test bed holding magnetic microbots." loading="lazy">
+            </a>
+            <figcaption>The gantry and end effector over the acrylic bed. Fingers carry permanent magnets that steer the bots below.</figcaption>
+          </figure>
+          <figure>
+            <a href="assets/img/microbots-cv-tracking.jpg" target="_blank" rel="noopener">
+              <img src="assets/img/microbots-cv-tracking.jpg" width="1100" height="825"
+                   alt="MediaPipe landmark tracking overlaid on a human hand on screen, beside a cluster of black magnetic microbots held in a palm." loading="lazy">
+            </a>
+            <figcaption>MediaPipe landmark tracking driving the gantry, and the 3 mm twist-tie microbots it steers.</figcaption>
+          </figure>
+          <figure class="wide">
+            <a href="assets/img/microbots-poster.jpg" target="_blank" rel="noopener">
+              <img src="assets/img/microbots-poster.jpg" width="1100" height="825"
+                   alt="Full project poster covering system overview, computer vision, mechanics, apparatus list, next steps, and future applications." loading="lazy">
+            </a>
+            <figcaption>Full Engineering Open House poster. Click to open full size.</figcaption>
+          </figure>
+        </div>
 
         <div class="panel-body">
           <p><strong>The idea.</strong> In <em>Big Hero 6</em>, Hiro controls a swarm of microbots with a neural headband. We wanted to know how much of that we could actually build with computer vision and magnetic fields instead. The answer turned out to be a surprising amount.</p>
 
-          <p><strong>How it works.</strong> A camera watches the user's hand. Python and MediaPipe extract finger positions and wrist coordinates, which stream to an Arduino that translates them into gantry motion. The gantry — three NEMA 17 steppers on repurposed 3D printer framing, driven through an Arduino CNC shield — carries a 3D-printed four-fingered hand whose six servos position permanent magnets. Those magnets pull 3 mm twist-tie microbots around the acrylic bed below. Move your hand, and the bots follow.</p>
+          <p><strong>How it works.</strong> A camera watches the user's hand. Python and MediaPipe extract finger positions and wrist coordinates, which stream to an Arduino that translates them into gantry motion. The gantry — three NEMA 17 steppers on repurposed 3D printer framing, driven through an Arduino CNC shield — carries a 3D-printed four-fingered hand whose six servos position permanent magnets. Those magnets pull 3 mm twist-tie microbots around the acrylic bed below.</p>
 
-          <p><strong>The hard part.</strong> Raw hand-tracking data is noisy enough that the gantry jittered constantly, chasing sub-millimeter tracking error. We added a minimum-displacement threshold: the gantry ignores hand movement below a set distance and only jumps to the most recent position once the threshold is crossed. That single change is what took the system from twitching to usable, and it's what let us hold 0.5 mm positional accuracy.</p>
+          <p><strong>The hard part.</strong> Raw hand-tracking data is noisy enough that the gantry jittered constantly, chasing sub-millimeter tracking error. We added a minimum-displacement threshold: the gantry ignores hand movement below a set distance and only jumps to the most recent position once the threshold is crossed. That single change took the system from twitching to usable, and it's what let us hold 0.5 mm positional accuracy.</p>
 
           <p><strong>My role.</strong> I was on the mechanical team, working on the physical build — the gantry structure, the finger assembly, and the magnet mounting — under project lead Nourseen Ismail. The hand design builds on Pollen Robotics' open-source Amazing Hand, which we adapted for magnet carriage.</p>
-
-          <p>The medical framing isn't just Open House pitch material. Magnetically steered microbots are an active research direction for minimally invasive procedures, including clearing blood clots without a catheter.</p>
         </div>
-
-        <figure class="panel-figure">
-          <a href="assets/img/microbots-cv-tracking.jpg" target="_blank" rel="noopener">
-            <img src="assets/img/microbots-cv-tracking.jpg" width="1600" height="1200"
-                 alt="MediaPipe landmark tracking overlaid on a human hand on screen, beside a cluster of black magnetic microbots held in a palm." loading="lazy">
-          </a>
-          <figcaption>Left: MediaPipe landmark tracking driving the gantry. Right: the 3 mm twist-tie microbots. Click to open full size.</figcaption>
-        </figure>
-
-        <figure class="panel-figure">
-          <a href="assets/img/microbots-poster.jpg" target="_blank" rel="noopener">
-            <img src="assets/img/microbots-poster.jpg" width="1600" height="1200"
-                 alt="Full project poster covering system overview, computer vision, mechanics, apparatus list, next steps, and future applications." loading="lazy">
-          </a>
-          <figcaption>Full Engineering Open House poster. Click to open full size.</figcaption>
-        </figure>
 
         <div class="panel-grid">
           <div class="panel-col">
@@ -1184,7 +1196,6 @@
               <li>Multi-axis motion control — stepper drivers, limit switches, homing</li>
               <li>Adapting an open-source hardware design rather than starting from zero</li>
               <li>Debugging where the fault crosses domains: vision noise showing up as mechanical jitter</li>
-              <li>Working inside a large interdisciplinary team on a fixed exhibition deadline</li>
               <li>Explaining a technical system to a non-technical Open House audience</li>
             </ul>
           </div>
@@ -1206,22 +1217,25 @@
         <h3 class="panel-title">AR Lab Visor — Intelligent Augmented Reality Safety System</h3>
         <p class="panel-role">Northrop Grumman Innovation Lab · Project Lead · May – Oct 2025</p>
 
-        <figure class="panel-figure">
-          <img src="assets/img/ar-visor-cad.jpg" width="1600" height="1200"
-               alt="CAD model of the AR Lab Visor: a wraparound safety visor alongside its separate electronics housing components in a Fusion 360 workspace." loading="lazy">
-          <figcaption>CAD assembly of the visor and its separable electronics housings.</figcaption>
-        </figure>
+        <div class="panel-media">
+          <figure class="wide">
+            <a href="assets/img/ar-visor-cad.jpg" target="_blank" rel="noopener">
+              <img src="assets/img/ar-visor-cad.jpg" width="1100" height="825"
+                   alt="CAD model of the AR Lab Visor: a wraparound safety visor alongside its separate electronics housing components." loading="lazy">
+            </a>
+            <figcaption>CAD assembly of the visor and its separable electronics housings.</figcaption>
+          </figure>
+        </div>
 
         <div class="panel-body">
           <p><strong>The problem.</strong> Lab and industrial environments run on procedures that people already know, which is exactly why they get skipped. Steps get done out of order, someone backs into equipment they didn't see, and safety eyewear only protects against the hazard it was designed for. We wanted to know whether a wearable could catch those failures as they happen rather than in the incident report afterward.</p>
 
-          <p><strong>What we built.</strong> A safety visor that meets standard protective eyewear requirements and adds two systems on top. A CPLIDAR C1 spatial sensor continuously scans the wearer's surroundings and flags nearby obstacles before a collision, not after contact. Alongside it, workflow monitoring tracks whether the user is executing a procedure in the correct sequence and catches deviations in the moment.</p>
+          <p><strong>What we built.</strong> A safety visor that meets standard protective eyewear requirements and adds two systems on top. A CPLIDAR C1 spatial sensor continuously scans the wearer's surroundings and flags nearby obstacles before a collision. Alongside it, workflow monitoring tracks whether the user is executing a procedure in the correct sequence and catches deviations in the moment.</p>
 
-          <p><strong>Why bone conduction.</strong> The obvious way to deliver alerts is headphones, and the obvious problem with headphones is that they occlude your hearing in exactly the environment where you most need it. Bone-conduction transducers sit against the skull and leave the ear canal completely open, so the wearer gets hands-free instructional guidance while still hearing the room, their colleagues, and the machine they're standing next to.</p>
+          <p><strong>Why bone conduction.</strong> The obvious way to deliver alerts is headphones, and the obvious problem with headphones is that they occlude your hearing in exactly the environment where you most need it. Bone-conduction transducers sit against the skull and leave the ear canal open, so the wearer gets hands-free guidance while still hearing the room, their colleagues, and the machine they're standing next to.</p>
 
-          <p><strong>My role.</strong> I led a four-person team and owned the mechanical work end to end. That meant designing the visor frame and internal electronics housings in SolidWorks to package a Raspberry Pi, the LIDAR unit, custom PCB electronics, and the transducers into something wearable — then building, testing, and revising through iterative cycles. Each build round surfaced integration and sensor-reliability issues that only appear once the hardware is physically assembled, which is the part CAD cannot tell you.</p>
+          <p><strong>My role.</strong> I led a four-person team and owned the mechanical work end to end — designing the visor frame and internal electronics housings in SolidWorks to package a Raspberry Pi, the LIDAR unit, custom PCB electronics, and the transducers into something wearable, then building, testing, and revising through iterative cycles.</p>
         </div>
-
 
         <div class="panel-grid">
           <div class="panel-col">
@@ -1231,7 +1245,6 @@
               <li>Designed the visor frame and electronics housings in SolidWorks</li>
               <li>Packaged Raspberry Pi, LIDAR, custom PCB, and transducers into a wearable envelope</li>
               <li>Ran iterative build-and-test cycles to validate electromechanical integration</li>
-              <li>Verified sensor reliability across repeated assembly rounds</li>
             </ul>
           </div>
           <div class="panel-col">
@@ -1240,7 +1253,6 @@
               <li>Packaging design under real wearable constraints — weight, balance, comfort</li>
               <li>LIDAR integration and spatial sensing for proximity detection</li>
               <li>Designing around human factors rather than bolting them on afterward</li>
-              <li>Sensor fusion across LIDAR, IMU, and audio output</li>
               <li>Working inside a defense R&amp;D environment and its review cadence</li>
             </ul>
           </div>
@@ -1257,66 +1269,59 @@
       </div>
 
       <!-- 04 -->
-      <!-- NOTE: this image comes from slides carrying proprietary markings.
-           Clear it with your manager or swap in a diagram you draw yourself. -->
       <div class="tabpanel" role="tabpanel" id="panel-4" aria-labelledby="tab-4" tabindex="0" hidden>
         <h3 class="panel-title">Multi-Camera Gaze Tracking System</h3>
         <p class="panel-role">International Motors · Human Factors &amp; Mechanical Design Intern · May – Aug 2026</p>
 
-        <figure class="panel-figure">
-          <a href="assets/img/gaze-camera-rig.jpg" target="_blank" rel="noopener">
-            <img src="assets/img/gaze-camera-rig.jpg" width="1600" height="1200"
-                 alt="Camera rig clamped to an extruded aluminium rail: an IR camera board on a 3D-printed bracket, a ring of infrared illuminator LEDs below it, and a webcam mounted alongside." loading="lazy">
-          </a>
-          <figcaption>One capture node — IR camera board on a 3D-printed bracket, infrared illuminator ring for corneal glint, and a synchronized RGB webcam, rail-mounted for 6-DOF adjustment.</figcaption>
-        </figure>
-
-        <figure class="panel-figure">
-          <a href="assets/img/gaze-face-mesh-calibration.jpg" target="_blank" rel="noopener">
-            <img src="assets/img/gaze-face-mesh-calibration.jpg" width="1600" height="1200"
-                 alt="Two synchronized camera views of the same person, each overlaid with a MediaPipe face mesh and a magenta gaze vector. Overlays read center calibrated, face and gaze OK, and a depth of roughly 60 centimetres." loading="lazy">
-          </a>
-          <figcaption>Both cameras locked onto the same subject after center calibration. MediaPipe face mesh gives head pose; the magenta vector is estimated gaze direction, with depth resolved by stereo triangulation.</figcaption>
-        </figure>
-
-        <figure class="panel-figure">
-          <a href="assets/img/gaze-ir-pccr-debug.jpg" target="_blank" rel="noopener">
-            <img src="assets/img/gaze-ir-pccr-debug.jpg" width="1600" height="1200"
-                 alt="Debug windows showing thresholded infrared eye images, isolated left and right eye views with detected pupil ellipses and glint markers, a console log, and the raw infrared feed with both eyes bounded in blue and green." loading="lazy">
-          </a>
-          <figcaption>PCCR running live. Thresholded IR views isolate pupil and corneal glint; the per-eye windows show the fitted pupil ellipse and detected glint with confidence values, and the offset between the two yields gaze direction.</figcaption>
-        </figure>
-
-        <figure class="panel-figure">
-          <video src="assets/img/gaze-unity-pointcloud.mp4"
-                 poster="assets/img/gaze-unity-poster.jpg"
-                 width="1600" height="1200"
-                 controls muted loop playsinline preload="none"
-                 aria-label="Screen capture of gaze markers moving across a 3D point cloud reconstruction of the truck cab in Unity."></video>
-          <figcaption>Gaze landing in 3D. Vectors stream into Unity, which holds a scanned point cloud of the cab — orange markers show where the driver is looking, and the grey sphere tracks head position.</figcaption>
-        </figure>
-
-        <figure class="panel-figure">
-          <a href="assets/img/gaze-heatmap-concept.jpg" target="_blank" rel="noopener">
-            <img src="assets/img/gaze-heatmap-concept.jpg" width="1600" height="1200"
-                 alt="Concept mockup of a truck infotainment screen with a coloured gaze heatmap overlaid, showing hotspots on the navigation tile, radio tile, and the row of climate controls." loading="lazy">
-          </a>
-          <figcaption>Concept mockup I made, not measured data — an illustration of how aggregated gaze would surface as an attention heatmap over the HMI, showing which interface regions pull the eye and for how long.</figcaption>
-        </figure>
-
-        <!-- Also available but not enabled: assets/img/gaze-simulator-cab.jpg,
-             a wide shot of the full simulator cab. Add only if cleared. -->
+        <div class="panel-media">
+          <figure>
+            <a href="assets/img/gaze-camera-rig.jpg" target="_blank" rel="noopener">
+              <img src="assets/img/gaze-camera-rig.jpg" width="1100" height="825"
+                   alt="Camera rig clamped to an extruded aluminium rail: an IR camera board on a 3D-printed bracket, a ring of infrared illuminator LEDs, and a webcam mounted alongside." loading="lazy">
+            </a>
+            <figcaption>One capture node — IR camera board on a 3D-printed bracket, infrared illuminator ring for corneal glint, and a synchronized RGB webcam.</figcaption>
+          </figure>
+          <figure>
+            <a href="assets/img/gaze-face-mesh-calibration.jpg" target="_blank" rel="noopener">
+              <img src="assets/img/gaze-face-mesh-calibration.jpg" width="1100" height="825"
+                   alt="Two synchronized camera views of the same person, each overlaid with a MediaPipe face mesh and a magenta gaze vector, reading center calibrated at roughly 60 centimetres depth." loading="lazy">
+            </a>
+            <figcaption>Both cameras locked on after center calibration. Face mesh gives head pose; the magenta vector is estimated gaze.</figcaption>
+          </figure>
+          <figure>
+            <a href="assets/img/gaze-ir-pccr-debug.jpg" target="_blank" rel="noopener">
+              <img src="assets/img/gaze-ir-pccr-debug.jpg" width="1100" height="825"
+                   alt="Debug windows showing thresholded infrared eye images, isolated left and right eye views with detected pupil ellipses and glint markers, and the raw infrared feed with both eyes bounded." loading="lazy">
+            </a>
+            <figcaption>PCCR running live — thresholded IR views isolate pupil and corneal glint, and the offset between them yields gaze direction.</figcaption>
+          </figure>
+          <figure>
+            <a href="assets/img/gaze-heatmap-concept.jpg" target="_blank" rel="noopener">
+              <img src="assets/img/gaze-heatmap-concept.jpg" width="1100" height="825"
+                   alt="Concept mockup of an infotainment screen with a coloured gaze heatmap overlaid, showing hotspots on the navigation tile, radio tile, and climate controls." loading="lazy">
+            </a>
+            <figcaption>Concept mockup I made, not measured data — how aggregated gaze would surface as an attention heatmap over the HMI.</figcaption>
+          </figure>
+          <figure class="wide">
+            <video src="assets/img/gaze-unity-pointcloud.mp4"
+                   poster="assets/img/gaze-unity-poster.jpg"
+                   width="1100" height="825"
+                   controls muted loop playsinline preload="none"
+                   aria-label="Screen capture of gaze markers moving across a 3D point cloud reconstruction of the truck cab in Unity."></video>
+            <figcaption>Gaze landing in 3D. Vectors stream into Unity, which holds a scanned point cloud of the cab — orange markers show where the driver is looking, and the grey sphere tracks head position.</figcaption>
+          </figure>
+        </div>
 
         <div class="panel-body">
-          <p><strong>The question.</strong> When a driver is operating a truck cab, where are they actually looking, and for how long? Interior design decisions — display placement, control layout, mirror geometry — depend on that answer, and self-reported data isn't reliable enough to design against. The team needed measured gaze, mapped into the real geometry of the cab.</p>
+          <p><strong>The question.</strong> When a driver is operating a truck cab, where are they actually looking, and for how long? Interior design decisions — display placement, control layout, mirror geometry — depend on that answer, and self-reported data isn't reliable enough to design against.</p>
 
           <p><strong>Calibration.</strong> Two cameras only give you 3D position if you know precisely where they are relative to each other. I used a 5×7 ChArUco board to solve both intrinsic parameters per camera — focal length, distortion — and extrinsic parameters between them, putting both viewpoints into a shared coordinate system. Everything downstream depends on getting this right.</p>
 
-          <p><strong>Gaze estimation.</strong> Two methods run in parallel. MediaPipe's iris and face mesh models give head position and a coarse gaze vector from iris landmarks. PCCR — pupil center corneal reflection — is the precise one: it locates the pupil center and the corneal glint from an IR source, and the relative offset between those two points yields gaze direction. Combining them with stereo triangulation across the synchronized cameras produces a gaze vector accurate to roughly 2°.</p>
+          <p><strong>Gaze estimation.</strong> Two methods run in parallel. MediaPipe's iris and face mesh models give head position and a coarse gaze vector from iris landmarks. PCCR — pupil center corneal reflection — is the precise one: it locates the pupil center and the corneal glint from an IR source, and the relative offset between those two points yields gaze direction. Combining them with stereo triangulation produces a gaze vector accurate to roughly 2°.</p>
 
-          <p><strong>Putting it in space.</strong> Gaze vectors and head position stream into Unity, which holds a 3D scan of the actual cab. The result renders where in that reconstructed space the driver is looking, at about 20 FPS, with live camera feeds integrated so you can see the person and their gaze target at once.</p>
+          <p><strong>Putting it in space.</strong> Gaze vectors and head position stream into Unity, which holds a 3D scan of the actual cab, rendering where in that reconstructed space the driver is looking at about 20 FPS.</p>
 
-          <p><strong>What it was for.</strong> The pipeline supported human factors studies with roughly 30 participants across workshops and clinic sessions. I helped run those sessions and synthesized the findings into thematic groupings that fed directly into cab interior design concepts. Separately, I designed the physical rig the system sits in — Siemens NX enclosures and housings with 6-DOF adjustable camera mounts and integrated cable routing, 3D printed to fit the simulator's packaging constraints.</p>
+          <p><strong>What it was for.</strong> The pipeline supported human factors studies with roughly 30 participants across workshops and clinic sessions. I helped run those sessions and synthesized the findings into thematic groupings that fed into cab interior design concepts. I also designed the physical rig — Siemens NX enclosures and housings with 6-DOF adjustable camera mounts and integrated cable routing, 3D printed to fit the simulator's packaging constraints.</p>
         </div>
 
         <div class="panel-grid">
@@ -1356,20 +1361,37 @@
       </div>
 
       <!-- 05 -->
-      <!-- TODO: add a Siemens NX stress contour plot of the rail interface.
-           This is the highest-value image still missing from the site. -->
       <div class="tabpanel" role="tabpanel" id="panel-5" aria-labelledby="tab-5" tabindex="0" hidden>
         <h3 class="panel-title">MonARCH 12U CubeSat — Deployer Interface Structural FEA</h3>
         <p class="panel-role">LASSI, Laboratory for Advanced Space Systems at Illinois · Undergraduate Structures/Thermal Researcher · Sep 2025 – Present</p>
 
+        <div class="panel-media">
+          <figure>
+            <a href="assets/img/cubesat-fe-mesh.jpg" target="_blank" rel="noopener">
+              <img src="assets/img/cubesat-fe-mesh.jpg" width="1100" height="825"
+                   alt="Finite element mesh of the CubeSat body shown in green, with blue constraint markers along the rail edges and coordinate triads at the base." loading="lazy">
+            </a>
+            <figcaption>The finite element model in Siemens NX. Blue markers along the rail edges are the constraint set — CBUSH springs, CGAP contacts, and RBE3 multi-point constraints replacing the previous bonded conditions.</figcaption>
+          </figure>
+          <!-- Provenance check: this is a published figure from CubeSat
+               literature, not original work. Attribute it or remove it. -->
+          <figure>
+            <a href="assets/img/cubesat-ppod-reference.jpg" target="_blank" rel="noopener">
+              <img src="assets/img/cubesat-ppod-reference.jpg" width="1100" height="825"
+                   alt="Reference figure showing a Poly Picosatellite Orbital Deployer: a CAD section view of the rectangular tube deployer alongside a photograph looking down its interior at the spring plunger." loading="lazy">
+            </a>
+            <figcaption>Reference: the P-POD deployer a CubeSat launches from. The satellite is held by its four corner rails inside the tube and spring-ejected on orbit — that rail contact is the interface being modeled.</figcaption>
+          </figure>
+        </div>
+
         <div class="panel-body">
-          <p><strong>Context.</strong> MonARCH is a 12U CubeSat platform developed at LASSI to pack high capability into a small structure. Before launch, it sits inside a deployer that holds it by its rails and then springs it out on orbit. The rail interface is where launch loads enter the satellite, which makes it the interface you most need to model correctly.</p>
+          <p><strong>Context.</strong> MonARCH is a 12U CubeSat platform developed at LASSI to pack high capability into a small structure. Before launch it sits inside a deployer that holds it by its rails and then springs it out on orbit. The rail interface is where launch loads enter the satellite, which makes it the interface you most need to model correctly.</p>
 
           <p><strong>What was wrong.</strong> The existing finite element model used boundary conditions that did not physically represent contact between the satellite and the deployer rails. The model was solvable, but the constraints it applied weren't what the hardware actually experiences — so the stress distribution it predicted wasn't one you could design against with confidence.</p>
 
           <p><strong>What I rebuilt.</strong> I reconstructed the model in Siemens NX with the contact represented explicitly: CBUSH spring elements for compliant rail contact, CGAP contact elements for surfaces that can separate under load rather than staying bonded, and RBE3 multi-point constraints for distributing loads without artificially stiffening the structure. I developed force diagrams alongside it to characterize the loads the rail interface actually sees during launch.</p>
 
-          <p><strong>The result.</strong> Tuning the CBUSH stiffness to 75 N/mm laterally and 100,000 N/mm axially reproduced physical contact behavior much more closely than the previous setup. The lateral value is deliberately soft and the axial value deliberately stiff, which is what the physical interface does: the rails resist axial motion almost rigidly while allowing some lateral give. The updated model yields a far more realistic stress distribution under deployment loads.</p>
+          <p><strong>The result.</strong> Tuning the CBUSH stiffness to 75 N/mm laterally and 100,000 N/mm axially reproduced physical contact behavior much more closely than the previous setup. The lateral value is deliberately soft and the axial value deliberately stiff, which is what the physical interface does: the rails resist axial motion almost rigidly while allowing some lateral give.</p>
 
           <p><strong>Also underway.</strong> An external industry partner posed a repackaging challenge: fit MonARCH hardware into a cylinder 8 inches in diameter and 1 meter long, volumetrically equivalent to a 32U. Preliminary geometry rules out the easy answer — MonARCH's 226.3 mm square cross-section will not inscribe within the cylinder's 203.2 mm inner diameter. The remaining option is redistributing subsystems along the cylinder's 1 m length, which is what I'm investigating now.</p>
 
